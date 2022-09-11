@@ -16,7 +16,7 @@ Inhalt zu erstellen. Der Inhalt dieser Datei wird aus der im Generator erstellte
         header('Location: /code_ba');
     }
     
-    require('../../header.php');
+    require('../header.php');
     $menu_obj = json_decode($study[1], true);
     $deepest_elements = list_deepest_elements($menu_obj);
     sort($deepest_elements);
