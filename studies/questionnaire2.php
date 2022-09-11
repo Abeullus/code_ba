@@ -8,7 +8,9 @@ Dies hat zur Folge, dass das iFrame erneut geladen wird. Dieser Ladevorgang wird
 
 <?php
     session_start();
-    $mysql = mysqli_connect('rdbms.strato.de', 'dbu2938481', 'Bachelor2022!', 'dbs8555354');
+     //$mysql = mysqli_connect('rdbms.strato.de', 'dbu2938481', 'Bachelor2022!', 'dbs8555354');
+
+     $mysql = mysqli_connect('localhost', 'FabZie', 'BA2022!', 'BA_Ziegler'); // --> lokaler Server über XAMPP 
     $ids = mysqli_query($mysql, 'SELECT `Session_ID` FROM `User`');
     
     if ($ids && $ids->num_rows) {

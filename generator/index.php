@@ -5,7 +5,9 @@ in einer Navigationleiste auszugeben. -->
     session_start();
 
 // Verbindungsaufbau mit mySQL Datenbank, Anlegen aller benötigten Tabellen sofern diese nicht bereits existieren und Hochladen der .csv-Datei.
-    $mysql = mysqli_connect('rdbms.strato.de', 'dbu2938481', 'Bachelor2022!', 'dbs8555354');
+    //$mysql = mysqli_connect('rdbms.strato.de', 'dbu2938481', 'Bachelor2022!', 'dbs8555354');
+
+    $mysql = mysqli_connect('localhost', 'FabZie', 'BA2022!', 'BA_Ziegler'); // --> lokaler Server über XAMPP 
     
     mysqli_query($mysql, 'CREATE TABLE IF NOT EXISTS `Functions` (
         `Functions_ID` int(11) NOT NULL AUTO_INCREMENT,

@@ -9,9 +9,9 @@
 
 
     // Verbindung mit bereits vorhandener Datenbank
-    //$mysql = mysqli_connect('localhost', 'FabZie', 'BA2022!', 'BA_Ziegler'); --> lokaler Server über XAMPP 
+    $mysql = mysqli_connect('localhost', 'FabZie', 'BA2022!', 'BA_Ziegler'); // --> lokaler Server über XAMPP 
     
-    $mysql = mysqli_connect('rdbms.strato.de', 'dbu2938481', 'Bachelor2022!', 'dbs8555354');
+    // $mysql = mysqli_connect('rdbms.strato.de', 'dbu2938481', 'Bachelor2022!', 'dbs8555354');
    
 
 
