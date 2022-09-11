@@ -10,46 +10,58 @@ Bei jedem Durchlauf wird ein KLM-Modell generiert und in der Datenbank gespeiche
     session_start();
 
     //Verbinden mit bereits erstellter Datenbank
-    $mysql = mysqli_connect('localhost', 'FabZie', 'BA2022!', 'BA_Ziegler');
-    $id = mysqli_query($mysql, 'SELECT `User_ID` FROM `User_Interaction` ORDER BY `User_ID` DESC LIMIT 1')->fetch_row()[0];
-    if (session_id() != $id) {
+    $mysql = mysqli_connect('rdbms.strato.de', 'dbu2938481', 'Bachelor2022!', 'dbs8555354');
+    $ids = mysqli_query($mysql, 'SELECT `Session_ID` FROM `User`');
+    
+    if ($ids && $ids->num_rows) {
+        $ids = $ids->fetch_all();
+        $ids = array_merge(...$ids);
+//        print_r($ids);exit;
+    }
+    if (!$ids || !in_array(session_id(), $ids)) {
         session_destroy();
-        mysqli_query($mysql, 'INSERT INTO `User_Interaction` (`User_ID`) VALUES (NULL)');
-        $id = mysqli_query($mysql, 'SELECT `User_ID` FROM `User_Interaction` ORDER BY `User_ID` DESC LIMIT 1')->fetch_row()[0];
+        mysqli_query($mysql, 'INSERT INTO `User` (`Session_ID`) VALUES (NULL)');
+        $id = mysqli_query($mysql, 'SELECT MAX(`Session_ID`) FROM `User`')->fetch_row()[0];
         session_id($id);
         session_start();
     }
     
     if (!isset($_SESSION['study'])) {
-        header('Location: /fabi');
+        header('Location: /');
     }
     
-    $study = mysqli_query($mysql, 'SELECT * FROM `Generated_Studies` WHERE `ID`=' . $_SESSION['study'])->fetch_row();
+    $study = mysqli_query($mysql, 'SELECT * FROM `Menu-Generator` WHERE `Menu_ID`=' . $_SESSION['study'])->fetch_row();
     
     if (!$study) {
-        header('Location: /fabi');
+        header('Location: /');
     }
     
     require('../header.php');
     
-    $menu_obj = json_decode($study[1], true);
+    $menu_obj = json_decode($study[2], true);
     $deepest_elements = list_deepest_elements($menu_obj);
     sort($deepest_elements);
+    
+    $functions = mysqli_query($mysql, 'SELECT * FROM `Functions` WHERE `Functions_ID`=' . $study[1])->fetch_assoc();
+    
+    $wordList = mysqli_query($mysql, 'SELECT `WordList_ID`, `WordsToSearch` FROM `WordList` WHERE `Functions_ID`=' . $study[1] . ' ORDER BY `WordList_ID` ASC LIMIT 1')->fetch_row();
+    
+//    print_r($wordList);exit;
 ?>
         <script>
-            const words = <?= $study[7] ?>;
+            const words = <?= $wordList[1] ?>;
             const durchlauf = 1;
         </script>
         <div class="content content-preview">
             <div class="study-headline">
                 <h1>Durchlauf 1</h1>
-                <p>Finden Sie das Wort: <br> <br> <span class="word"><?= json_decode($study[7])[0] ?></span></p>
+                <p>Finden Sie das Wort: <br> <br> <span class="word"><?= json_decode($wordList[1])[0] ?></span></p>
             </div>
             <img class="logo" src="../images/ur-logo-bildmarke-grau.png">
             <div class="content-inner content-bg">
                 <header>
                     <nav class="list">
-                        <div<?php if (!$study[4]) { echo ' class="inactive"'; } ?>>
+                        <div<?php if (!$functions['ShowOverview']) { echo ' class="inactive"'; } ?>>
                             <span>Übersicht</span>
                             <ul>
                                 <?php if (!empty($deepest_elements) && in_array(strtoupper(substr($deepest_elements[0], 0, 1)), ['A','B','C'])) : ?>
@@ -170,7 +182,7 @@ Bei jedem Durchlauf wird ein KLM-Modell generiert und in der Datenbank gespeiche
                             <?= recurse_menu($inner) ?>
                         </div>
                         <?php endforeach; ?>
-                        <div<?php if (!$study[5]) { echo ' class="inactive"'; } ?>>
+                        <div<?php if (!$functions['ShowMyList']) { echo ' class="inactive"'; } ?>>
                             <span>Meine Liste</span>
                             <ul></ul>
                         </div>

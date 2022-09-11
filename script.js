@@ -1,5 +1,17 @@
 // Design und Animaion List-Menu
 $(function() {
+    $('input[name="searchWords"]').change(function() {
+        $(this).parent().next('label').toggle().children('input').val('');
+    });
+    
+    $('input[type="file"]').change(function() {
+        if (this.files.length) {
+            $(this).siblings('.description').text(this.files[0].name + ' erfolgreich hochgeladen');
+        } else {
+            $(this).siblings('.description').text('');
+        }
+    });
+    
     $('nav label').each(function() {
         if ($(this).siblings('ul').length) {
             $(this).children('input').remove();

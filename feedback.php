@@ -1,7 +1,32 @@
 <?php 
 
-session_start();
-    $mysql = mysqli_connect('localhost', 'FabZie', 'BA2022!', 'BA_Ziegler');
+    session_start();
+
+    $mysql = mysqli_connect('rdbms.strato.de', 'dbu2938481', 'Bachelor2022!', 'dbs8555354');
+    $ids = mysqli_query($mysql, 'SELECT `Session_ID` FROM `User`');
+    
+    if ($ids && $ids->num_rows) {
+        $ids = $ids->fetch_all();
+        $ids = array_merge(...$ids);
+//        print_r($ids);exit;
+    }
+    if (!$ids || !in_array(session_id(), $ids)) {
+        session_destroy();
+        mysqli_query($mysql, 'INSERT INTO `User` (`Session_ID`) VALUES (NULL)');
+        $id = mysqli_query($mysql, 'SELECT MAX(`Session_ID`) FROM `User`')->fetch_row()[0];
+        session_id($id);
+        session_start();
+    }
+    
+    if (!isset($_SESSION['study'])) {
+        header('Location: /');
+    }
+    
+    $study = mysqli_query($mysql, 'SELECT * FROM `Menu-Generator` WHERE `Menu_ID`=' . $_SESSION['study'])->fetch_row();
+    
+    if (!$study || empty($_POST)) {
+        header('Location: /');
+    }
 
 require('header.php');
 

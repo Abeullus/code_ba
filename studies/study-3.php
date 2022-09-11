@@ -4,43 +4,53 @@
     session_start();
 
     //Verbindung mit bereits vorhandener Datenbank
-    $mysql = mysqli_connect('localhost', 'FabZie', 'BA2022!', 'BA_Ziegler');
-    $id = mysqli_query($mysql, 'SELECT `User_ID` FROM `User_Interaction` ORDER BY `User_ID` DESC LIMIT 1')->fetch_row()[0];
-    if (session_id() != $id) {
+    $mysql = mysqli_connect('rdbms.strato.de', 'dbu2938481', 'Bachelor2022!', 'dbs8555354');
+    $ids = mysqli_query($mysql, 'SELECT `Session_ID` FROM `User`');
+    
+    if ($ids && $ids->num_rows) {
+        $ids = $ids->fetch_all();
+        $ids = array_merge(...$ids);
+//        print_r($ids);exit;
+    }
+    if (!$ids || !in_array(session_id(), $ids)) {
         session_destroy();
-        mysqli_query($mysql, 'INSERT INTO `User_Interaction` (`User_ID`) VALUES (NULL)');
-        $id = mysqli_query($mysql, 'SELECT `User_ID` FROM `User_Interaction` ORDER BY `User_ID` DESC LIMIT 1')->fetch_row()[0];
+        mysqli_query($mysql, 'INSERT INTO `User` (`Session_ID`) VALUES (NULL)');
+        $id = mysqli_query($mysql, 'SELECT MAX(`Session_ID`) FROM `User`')->fetch_row()[0];
         session_id($id);
         session_start();
     }
     
     if (!isset($_SESSION['study'])) {
-        header('Location: /fabi');
+        header('Location: /');
     }
     
-    $study = mysqli_query($mysql, 'SELECT * FROM `Generated_Studies` WHERE `ID`=' . $_SESSION['study'])->fetch_row();
+    $study = mysqli_query($mysql, 'SELECT * FROM `Menu-Generator` WHERE `Menu_ID`=' . $_SESSION['study'])->fetch_row();
     
     if (!$study || empty($_POST)) {
-        header('Location: /fabi');
+        header('Location: /');
     }
     
     $timings = json_decode($_POST['timings'], true);
-    mysqli_query($mysql, 'UPDATE `User_Interaction` SET `User_Success_Rate_2`=' . (float)$_POST['tsr'] . ', `Time_On_Task_2`=' . (float)$_POST['realtime'] . ', `Task_Error_Rate_2`=' . (int)$_POST['errors'] . ', `Clicks_Total_2`=' . (int)$timings['bb'] . ', `KLM_2`=\'' . $_POST['timings'] . '\', `KLM_Time_2`=' . (float)$_POST['time'] . ' WHERE `User_ID`=' . $id);
+    mysqli_query($mysql, 'INSERT INTO `Experiment` (`Menu_ID`, `User_ID`, `UserSuccessRate`, `TimeOnTask`, `TaskErrorRate`, `ClicksTotal`, `KLM`, `KLM-Time`) VALUES (' . $_SESSION['study'] . ', ' . session_id() . ', ' . (float)$_POST['tsr'] . ', ' . (float)$_POST['realtime'] . ', ' . (int)$_POST['errors'] . ', ' . (int)$timings['bb'] . ', \'' . $_POST['timings'] . '\', ' . (float)$_POST['time'] . ')');
     
     require('../header.php');
     
-    $menu_obj = json_decode($study[1], true);
+    $menu_obj = json_decode($study[2], true);
     $deepest_elements = list_deepest_elements($menu_obj);
     sort($deepest_elements);
+    
+    $functions = mysqli_query($mysql, 'SELECT * FROM `Functions` WHERE `Functions_ID`=' . $study[1])->fetch_assoc();
+    
+    $wordList = mysqli_query($mysql, 'SELECT `WordList_ID`, `WordsToSearch` FROM `WordList` WHERE `Functions_ID`=' . $study[1] . ' ORDER BY `WordList_ID` ASC LIMIT 2, 1')->fetch_row();
 ?>
         <script>
-            const words = <?= $study[9] ?>;
+            const words = <?= $wordList[1] ?>;
             const durchlauf = 3;
         </script>
         <div class="content content-preview">
             <div class="study-headline">
                 <h1>Durchlauf 3 </h1>
-                <p>Finden Sie das Wort: <br> <br>  <span class="word"><?= json_decode($study[9])[0] ?></span></p>
+                <p>Finden Sie das Wort: <br> <br>  <span class="word"><?= json_decode($wordList[1])[0] ?></span></p>
             </div>
             <img class="logo" src="../images/ur-logo-bildmarke-grau.png">
             <div class="content-inner content-bg">
@@ -55,7 +65,7 @@
                             <?= recurse_menu($inner) ?>
                         </div>
                         <?php endforeach; ?>
-                        <div<?php if (!$study[5]) { echo ' class="inactive"'; } ?>>
+                        <div<?php if (!$functions['ShowMyList']) { echo ' class="inactive"'; } ?>>
                             <span>Meine Liste</span>
                             <ul></ul>
                         </div>

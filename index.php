@@ -1,5 +1,6 @@
 <!-- Index Datei für die auszuführende Studie -->
 
+
 <?php
     session_start();
 
@@ -8,61 +9,21 @@
 
 
     // Verbindung mit bereits vorhandener Datenbank
-    $mysql = mysqli_connect('localhost', 'FabZie', 'BA2022!', 'BA_Ziegler');
+    $mysql = mysqli_connect('rdbms.strato.de', 'dbu2938481', 'Bachelor2022!', 'dbs8555354');
+    //$mysql = mysqli_connect('localhost', 'FabZie', 'BA2022!', 'BA_Ziegler');
 
-    //Hier wird die Datenbank für die einzelnen Studien generiert, sofern diese noch nicht vorhanden sein sollte. 
-    mysqli_query($mysql, 'CREATE TABLE IF NOT EXISTS `generated_studies` (
-        `ID` int(11) NOT NULL AUTO_INCREMENT,
-        `Content` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL CHECK (json_valid(`Content`)),
-        `Track_Usage` tinyint(1) DEFAULT NULL,
-        `Calc_KLM` tinyint(1) DEFAULT NULL,
-        `Show_Overview` tinyint(1) DEFAULT NULL,
-        `Show_MyList` tinyint(1) DEFAULT NULL,
-        `Depth` int(11) DEFAULT NULL,
-        `study_1_words` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL CHECK (json_valid(`study_1_words`)),
-        `study_2_words` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL CHECK (json_valid(`study_2_words`)),
-        `study_3_words` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL CHECK (json_valid(`study_3_words`)),
-        PRIMARY KEY (`ID`)
-      ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;');
 
-      //Hier wird die Datenbank für die jeweiligen Studiendurchläufe generiert
-      mysqli_query($mysql, 'CREATE TABLE IF NOT EXISTS `User_Interaction` (
-
-        /* Durchlauf 1 */
-        `User_ID` int(11) NOT NULL AUTO_INCREMENT,
-        `User_Success_Rate_1` float DEFAULT NULL,
-        `Time_On_Task_1` float DEFAULT NULL,
-        `Task_Error_Rate_1` int(11) DEFAULT NULL,
-        `Clicks_Total_1` int(11) DEFAULT NULL,
-        `KLM_1` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL CHECK (json_valid(`KLM_1`)),
-        `KLM_Time_1` float DEFAULT NULL,
-
-        /* Durchlauf 2 */
-        `User_Success_Rate_2` float DEFAULT NULL,
-        `Time_On_Task_2` float DEFAULT NULL,
-        `Task_Error_Rate_2` int(11) DEFAULT NULL,
-        `Clicks_Total_2` int(11) DEFAULT NULL,
-        `KLM_2` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL CHECK (json_valid(`KLM_2`)),
-        `KLM_Time_2` float DEFAULT NULL,
-
-        /* Durchlauf 3 */
-        `User_Success_Rate_3` float DEFAULT NULL,
-        `Time_On_Task_3` float DEFAULT NULL,
-        `Task_Error_Rate_3` int(11) DEFAULT NULL,
-        `Clicks_Total_3` int(11) DEFAULT NULL,
-        `KLM_3` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL CHECK (json_valid(`KLM_3`)),
-        `KLM_Time_3` float DEFAULT NULL,
-        PRIMARY KEY (`User_ID`)
-      ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;');
-    $id = mysqli_query($mysql, 'SELECT `User_ID` FROM `User_Interaction` ORDER BY `User_ID` DESC LIMIT 1');
+    $ids = mysqli_query($mysql, 'SELECT `Session_ID` FROM `User`');
     
-    if ($id && $id->num_rows) {
-        $id = $id->fetch_row()[0];
+    if ($ids && $ids->num_rows) {
+        $ids = $ids->fetch_all();
+        $ids = array_merge(...$ids);
+//        print_r($ids);exit;
     }
-    if (session_id() != $id) {
+    if (!$ids || !in_array(session_id(), $ids)) {
         session_destroy();
-        mysqli_query($mysql, 'INSERT INTO `User_Interaction` (`User_ID`) VALUES (NULL)');
-        $id = mysqli_query($mysql, 'SELECT `User_ID` FROM `User_Interaction` ORDER BY `User_ID` DESC LIMIT 1')->fetch_row()[0];
+        mysqli_query($mysql, 'INSERT INTO `User` (`Session_ID`) VALUES (NULL)');
+        $id = mysqli_query($mysql, 'SELECT MAX(`Session_ID`) FROM `User`')->fetch_row()[0];
         session_id($id);
         session_start();
     }

@@ -1,8 +1,5 @@
 <?php 
 
-session_start();
-    $mysql = mysqli_connect('localhost', 'FabZie', 'BA2022!', 'BA_Ziegler');
-
 require('header.php');
 
 ?>
