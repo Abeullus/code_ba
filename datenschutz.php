@@ -3,9 +3,6 @@
 require('header.php');
 
 ?>
-<!--
-Hier kann optinal noch Inhalt für Datenschutz eingefügt werden
--->
 <html>
     <head>
         <title> Datenschutz </title>
@@ -42,7 +39,16 @@ Hier kann optinal noch Inhalt für Datenschutz eingefügt werden
                 <p class="text" style="height: auto">Sie haben jederzeit das Recht, unentgeltlich Auskunft &uuml;ber Herkunft, Empf&auml;nger und Zweck Ihrer gespeicherten personenbezogenen Daten zu erhalten. Sie haben au&szlig;erdem ein Recht, die Berichtigung oder L&ouml;schung dieser Daten zu verlangen. Wenn Sie eine Einwilligung zur Datenverarbeitung erteilt haben, k&ouml;nnen Sie diese Einwilligung jederzeit f&uuml;r die Zukunft widerrufen. Au&szlig;erdem haben Sie das Recht, unter bestimmten Umst&auml;nden die Einschr&auml;nkung der Verarbeitung Ihrer personenbezogenen Daten zu verlangen. Des Weiteren steht Ihnen ein Beschwerderecht bei der zust&auml;ndigen Aufsichtsbeh&ouml;rde zu.</p> 
                 <p class="text" style="height: auto">Hierzu sowie zu weiteren Fragen zum Thema Datenschutz k&ouml;nnen Sie sich jederzeit an uns wenden.</p>
 
-                <h2 class="h2">2. Allgemeine Hinweise und Pflicht&shy;informationen</h2>
+                <h2 class="h2">2. Hosting</h2>
+                <p class="text">Wir hosten die Inhalte unserer Webseite bei folgendem Anbieter:</p>
+                <h3 class="h3">Strato</h3> 
+                <p class="text">Anbieter ist die Strato AG, Otto-Ostrowski-Stra&szlig;e 7, 10249 Berlin (nachfolgend &bdquo;Strato&ldquo;). Wenn Sie unsere Website besuchen, erfasst Strato verschiedene Logfiles inklusive Ihrer IP-Adressen.</p> 
+                <p class="text">Weitere Informationen entnehmen Sie der Datenschutzerkl&auml;rung von Strato: <a href="https://www.strato.de/datenschutz/" target="_blank" rel="noopener noreferrer">https://www.strato.de/datenschutz/</a>.</p> 
+                <p class="text">Die Verwendung von Strato erfolgt auf Grundlage von Art. 6 Abs. 1 lit. f DSGVO. Wir haben ein berechtigtes Interesse an einer m&ouml;glichst zuverl&auml;ssigen Darstellung unserer Website. Sofern eine entsprechende Einwilligung abgefragt wurde, erfolgt die Verarbeitung ausschlie&szlig;lich auf Grundlage von Art. 6 Abs. 1 lit. a DSGVO und &sect; 25 Abs. 1 TTDSG, soweit die Einwilligung die Speicherung von Cookies oder den Zugriff auf Informationen im Endger&auml;t des Nutzers (z.&nbsp;B. Device-Fingerprinting) im Sinne des TTDSG umfasst. Die Einwilligung ist jederzeit widerrufbar.</p>
+                <h4 class="h4">Auftragsverarbeitung</h4> 
+                <p class="text">Wir haben einen Vertrag &uuml;ber Auftragsverarbeitung (AVV) mit dem oben genannten Anbieter geschlossen. Hierbei handelt es sich um einen datenschutzrechtlich vorgeschriebenen Vertrag, der gew&auml;hrleistet, dass dieser die personenbezogenen Daten unserer Websitebesucher nur nach unseren Weisungen und unter Einhaltung der DSGVO verarbeitet.</p>
+
+                <h2 class="h2">3. Allgemeine Hinweise und Pflicht&shy;informationen</h2>
                 <h3 class="h3">Datenschutz</h3>
                 <p class="text" style="height: auto">Die Betreiber dieser Seiten nehmen den Schutz Ihrer pers&ouml;nlichen Daten sehr ernst. Wir behandeln Ihre personenbezogenen Daten vertraulich und entsprechend den gesetzlichen Datenschutzvorschriften sowie dieser Datenschutzerkl&auml;rung.</p> 
                 <p class="text" style="height: auto">Wenn Sie diese Website benutzen, werden verschiedene personenbezogene Daten erhoben. Personenbezogene Daten sind Daten, mit denen Sie pers&ouml;nlich identifiziert werden k&ouml;nnen. Die vorliegende Datenschutzerkl&auml;rung erl&auml;utert, welche Daten wir erheben und wof&uuml;r wir sie nutzen. Sie erl&auml;utert auch, wie und zu welchem Zweck das geschieht.</p> <p class="text" style="height: auto">Wir weisen darauf hin, dass die Daten&uuml;bertragung im Internet (z.&nbsp;B. bei der Kommunikation per E-Mail) Sicherheitsl&uuml;cken aufweisen kann. Ein l&uuml;ckenloser Schutz der Daten vor dem Zugriff durch Dritte ist nicht 
@@ -93,7 +99,11 @@ Hier kann optinal noch Inhalt für Datenschutz eingefügt werden
                 <p class="text" style="height: auto">Diese Seite nutzt aus Sicherheitsgr&uuml;nden und zum Schutz der &Uuml;bertragung vertraulicher Inhalte, wie zum Beispiel Bestellungen oder Anfragen, die Sie an uns als Seitenbetreiber senden, eine SSL- bzw. TLS-Verschl&uuml;sselung. Eine verschl&uuml;sselte Verbindung erkennen Sie daran, dass die Adresszeile des Browsers von &bdquo;http://&ldquo; auf &bdquo;https://&ldquo; wechselt und an dem Schloss-Symbol in Ihrer Browserzeile.</p> 
                 <p class="text" style="height: auto">Wenn die SSL- bzw. TLS-Verschl&uuml;sselung aktiviert ist, k&ouml;nnen die Daten, die Sie an uns &uuml;bermitteln, nicht von Dritten mitgelesen werden.</p>
 
-                <h2 class="h2">3. Datenerfassung auf dieser Website</h2>
+                <h2 class="h2">4. Datenerfassung auf dieser Website</h2>
+
+                <h class="h3">Anfrage per E-Mail, Telefon oder Telefax</h3>
+                <p class="text">Wenn Sie uns per E-Mail, Telefon oder Telefax kontaktieren, wird Ihre Anfrage inklusive aller daraus hervorgehenden personenbezogenen Daten (Name, Anfrage) zum Zwecke der Bearbeitung Ihres Anliegens bei uns gespeichert und verarbeitet. Diese Daten geben wir nicht ohne Ihre Einwilligung weiter.</p> <p>Die Verarbeitung dieser Daten erfolgt auf Grundlage von Art. 6 Abs. 1 lit. b DSGVO, sofern Ihre Anfrage mit der Erf&uuml;llung eines Vertrags zusammenh&auml;ngt oder zur Durchf&uuml;hrung vorvertraglicher Ma&szlig;nahmen erforderlich ist. In allen &uuml;brigen F&auml;llen beruht die Verarbeitung auf unserem berechtigten Interesse an der effektiven Bearbeitung der an uns gerichteten Anfragen (Art. 6 Abs. 1 lit. f DSGVO) oder auf Ihrer Einwilligung (Art. 6 Abs. 1 lit. a DSGVO) sofern diese abgefragt wurde; die Einwilligung ist jederzeit widerrufbar.</p> <p>Die von Ihnen an uns per Kontaktanfragen &uuml;bersandten Daten verbleiben bei uns, bis Sie uns zur L&ouml;schung auffordern, Ihre Einwilligung zur Speicherung widerrufen oder der Zweck f&uuml;r die Datenspeicherung entf&auml;llt (z.&nbsp;B. nach abgeschlossener Bearbeitung Ihres Anliegens). Zwingende gesetzliche Bestimmungen &ndash; insbesondere gesetzliche Aufbewahrungsfristen &ndash; bleiben unber&uuml;hrt.</p>
+               
                 <h3 class="h3">Google Forms</h3>
                 <p class="text" style="height: auto">Wir haben Google Forms auf dieser Website eingebunden. Anbieter ist die die Google Ireland Limited, Gordon House, Barrow Street, Dublin 4, Irland (nachfolgend Google).</p> 
                 <p class="text" style="height: auto">Google Forms erm&ouml;glicht es uns, Online-Formulare zu erstellen um Nachrichten, Anfragen und sonstige Eingaben unserer Websitebesucher strukturiert zu erfassen. Alle von Ihnen get&auml;tigten Eingaben werden auf den Servern von Google verarbeitet. Google Forms speichert ein Cookie in Ihrem Browser, das eine eindeutige ID enth&auml;lt (NID-Cookie). Dieses Cookie speichert verschiedene Informationen wie beispielsweise Ihre Spracheinstellungen.</p>
@@ -104,7 +114,7 @@ Hier kann optinal noch Inhalt für Datenschutz eingefügt werden
                 <h4 class="h4">Auftragsverarbeitung</h4> 
                 <p class="text" style="height: auto">Wir haben einen Vertrag &uuml;ber Auftragsverarbeitung (AVV) mit dem oben genannten Anbieter geschlossen. Hierbei handelt es sich um einen datenschutzrechtlich vorgeschriebenen Vertrag, der gew&auml;hrleistet, dass dieser die personenbezogenen Daten unserer Websitebesucher nur nach unseren Weisungen und unter Einhaltung der DSGVO verarbeitet.</p>
 
-                <h2 class="h2">4. eCommerce und Zahlungs&shy;anbieter</h2>
+                <h2 class="h2">5. eCommerce und Zahlungs&shy;anbieter</h2>
                 <h3 class="h3">Verarbeiten von Kunden- und Vertragsdaten</h3>
                 <p class="text" style="height: auto">Wir erheben, verarbeiten und nutzen personenbezogene Kunden- und Vertragsdaten zur Begr&uuml;ndung, inhaltlichen Ausgestaltung und &Auml;nderung unserer Vertragsbeziehungen. Personenbezogene Daten &uuml;ber die Inanspruchnahme dieser Website (Nutzungsdaten) erheben, verarbeiten und nutzen wir nur, soweit dies erforderlich ist, um dem Nutzer die Inanspruchnahme des Dienstes zu erm&ouml;glichen oder abzurechnen. Rechtsgrundlage hierf&uuml;r ist Art. 6 Abs. 1 lit. b DSGVO.</p> 
                 <p class="text" style="height: auto">Die erhobenen Kundendaten werden nach Abschluss des Auftrags oder Beendigung der Gesch&auml;ftsbeziehung und Ablauf der ggf. bestehenden gesetzlichen Aufbewahrungsfristen gel&ouml;scht. Gesetzliche Aufbewahrungsfristen bleiben unber&uuml;hrt.</p>

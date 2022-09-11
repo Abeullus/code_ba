@@ -5,7 +5,7 @@ Inhalt zu erstellen. Der Inhalt dieser Datei wird aus der im Generator erstellte
     session_start();
     
     if (!isset($_SESSION['study'])) {
-        header('Location: /fabi');
+        header('Location: /code_ba');
     }
     
     //Verbindung mit der generierten Datenbank
@@ -13,7 +13,7 @@ Inhalt zu erstellen. Der Inhalt dieser Datei wird aus der im Generator erstellte
     $study = mysqli_query($mysql, 'SELECT * FROM `Generated_Studies` WHERE `ID`=' . $_SESSION['study'])->fetch_row();
     
     if (!$study) {
-        header('Location: /fabi');
+        header('Location: /code_ba');
     }
     
     require('../../header.php');

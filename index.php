@@ -9,8 +9,10 @@
 
 
     // Verbindung mit bereits vorhandener Datenbank
+    //$mysql = mysqli_connect('localhost', 'FabZie', 'BA2022!', 'BA_Ziegler'); --> lokaler Server über XAMPP 
+    
     $mysql = mysqli_connect('rdbms.strato.de', 'dbu2938481', 'Bachelor2022!', 'dbs8555354');
-    //$mysql = mysqli_connect('localhost', 'FabZie', 'BA2022!', 'BA_Ziegler');
+   
 
 
     $ids = mysqli_query($mysql, 'SELECT `Session_ID` FROM `User`');
@@ -18,8 +20,9 @@
     if ($ids && $ids->num_rows) {
         $ids = $ids->fetch_all();
         $ids = array_merge(...$ids);
-//        print_r($ids);exit;
     }
+
+
     if (!$ids || !in_array(session_id(), $ids)) {
         session_destroy();
         mysqli_query($mysql, 'INSERT INTO `User` (`Session_ID`) VALUES (NULL)');
@@ -29,7 +32,7 @@
     }
     require('header.php');
     
-    //Hier wird die jeweilige Session-ID gesetzt. 
+    //Hier wird die jeweilige Session-ID ausgelesen. 
     if (isset($_GET['study'])) {
         $_SESSION['study'] = (int)$_GET['study'];
     } else {
@@ -41,14 +44,14 @@
         <div class="content">
             <img class="logo" src="./images/ur-logo-bildmarke-grau.png">
             <div class="content-inner">
-                <h1 class="h1">Willkommen</h1>
+                <h1 class="h1">Willkommen zur Onlinestudie</h1>
                 <p class="text" style="height: 4em">Bacon ipsum dolor amet bacon shankle picanha ball tip. 
                 Tri-tip shoulder jowl filet mignon venison flank. Prosciutto pork turducken, 
                 kielbasa ground round strip steak short</p>
                 <form action="./studies/questionnaire.php" method="POST">
                     <label style="display: block">
                         <input type="radio" name="datenschutz" value="1" required>
-                        Ich habe die <a href="./datenschutz.php" target="_blank">Datenschutzbestimmungen</a> gelesen und akzeptiert
+                        Ich habe die <a href="./datenschutz.php" target="_blank">Datenschutzbestimmungen</a> gelesen und akzeptiert.
                     </label>
                     <input type="submit" class="btn" value="Jetzt teilnehmen">
                 </form>
