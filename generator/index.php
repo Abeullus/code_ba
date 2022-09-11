@@ -91,7 +91,7 @@ in einer Navigationleiste auszugeben. -->
 //        echo $mysql->error;exit;
         $_SESSION['study'] = mysqli_query($mysql, 'SELECT MAX(`ID`) FROM `Generated_Studies`')->fetch_row()[0];
 //        echo $_SESSION['study'];exit;
-        header('Location: menu-types/list.php');
+        header('Location: menu-types/output.php');
     else :
         require('../header.php');
 ?>  
@@ -109,8 +109,7 @@ in einer Navigationleiste auszugeben. -->
                 Corned beef t-bone andouille burgdoggen turducken filet mignon landjaeger sausage doner shoulder.
                 </p>
                 <form class="form" method="post" enctype="multipart/form-data">
-                    <div><label class="label"><input type="file" name="content"></label></div>
-                    <div><label class="label"><input type="file" name="words"></label></div>
+                    <div><label class="label"><input type="file" class="btn-upload" name="content"></label></div>
                     <div>
                         <label>
                             <input class="label" type="checkbox" name="tracking" value="1">
@@ -135,12 +134,26 @@ in einer Navigationleiste auszugeben. -->
                             "Meine Liste" anzeigen
                         </label>
                     </div>
+
+                    <div>
+                        <label>
+                            <input class="label" type="checkbox" name="overview" value="1">
+                            Wörter suchen?
+                        </label>
+
+                         <div class="upload-btn-wrapper">
+                             <button class="btn-upload">Upload a file</button>
+                            <input type="file" name="myfile" words/>
+                        </div> 
+                        <!-- <label class="label"><input type="file" class="btn-upload" name="words"></label> -->
+                    </div>
+
                     <input type="submit" class="btn" value="Absenden">
                 </form>
             </div>
             <div class="footer"> 
-                <div class="descr1">Fabian Ziegler � Matrikel-Nr. 2082578</div>
-                <div class="descr2">Lorem ipsum solor sit</div>
+                <div class="descr1">Fabian Ziegler – Matrikel-Nr. 2082578</div>
+                <div class="descr2">Menü-Generator Version 1 - Lokal</div>
             </div>
         </div>
     </body>
