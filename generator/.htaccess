@@ -1,0 +1,4 @@
+AuthType Basic
+AuthName "restricted area"
+AuthUserFile /mnt/web203/c0/11/512038111/htdocs/ba_code/generator/.htpasswd
+require valid-user
