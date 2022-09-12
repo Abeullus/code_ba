@@ -1,25 +1,33 @@
-<!-- List.php ist zur generierung der Navigationsliste zuständig. Hier werden die im Generator wählbaren Checkboxen ausgewerten um so den richtigen
-Inhalt zu erstellen. Der Inhalt dieser Datei wird aus der im Generator erstellten Datenbank ausgelesen. -->
-
 <?php
+    /* List.php ist zur generierung der Navigationsliste zuständig. Hier werden die im Generator wählbaren Checkboxen ausgewerten um so den richtigen
+Inhalt zu erstellen. Der Inhalt dieser Datei wird aus der im Generator erstellten Datenbank ausgelesen. */
+
+    ini_set ( 'display_errors' , 1 ); 
+    ini_set ( 'display_startup_errors' , 1 ); 
+    error_reporting ( E_ALL ); 
+
     session_start();
     
+    $mysql = mysqli_connect('rdbms.strato.de', 'dbu2938481', 'Bachelor2022!', 'dbs8555354');
+    
     if (!isset($_SESSION['study'])) {
-        header('Location: /code_ba');
+        echo 'keine study ohoh';
+//        header('Location: /');
     }
     
-    //Verbindung mit der generierten Datenbank
-    $mysql = mysqli_connect('localhost', 'FabZie', 'BA2022!', 'BA_Ziegler');
-    $study = mysqli_query($mysql, 'SELECT * FROM `Generated_Studies` WHERE `ID`=' . $_SESSION['study'])->fetch_row();
+    $study = mysqli_query($mysql, 'SELECT * FROM `Menu-Generator` WHERE `Menu_ID`=' . $_SESSION['study'])->fetch_row();
     
     if (!$study) {
-        header('Location: /code_ba');
+        echo 'kein post oho oh';
+//        header('Location: /');
     }
     
-    require('../header.php');
-    $menu_obj = json_decode($study[1], true);
+    require('../../header.php');
+    $menu_obj = json_decode($study[2], true);
     $deepest_elements = list_deepest_elements($menu_obj);
     sort($deepest_elements);
+    
+    $functions = mysqli_query($mysql, 'SELECT * FROM `Functions` WHERE `Functions_ID`=' . $study[1])->fetch_assoc();
 ?>
 
 
@@ -30,7 +38,7 @@ Inhalt zu erstellen. Der Inhalt dieser Datei wird aus der im Generator erstellte
             <div class="content-inner">
                 <header>
                     <nav class="list">
-                        <div<?php if (!$study[4]) { echo ' class="inactive"'; } ?>>
+                        <div<?php if (!$functions['ShowOverview']) { echo ' class="inactive"'; } ?>>
                             <span>Übersicht</span>
                             <ul>
                                 <?php if (!empty($deepest_elements) && in_array(strtoupper(substr($deepest_elements[0], 0, 1)), ['A','B','C'])) : ?>
@@ -151,7 +159,7 @@ Inhalt zu erstellen. Der Inhalt dieser Datei wird aus der im Generator erstellte
                             <?= recurse_menu($inner) ?>
                         </div>
                         <?php endforeach; ?>
-                        <div<?php if (!$study[5]) { echo ' class="inactive"'; } ?>>
+                        <div<?php if (!$functions['ShowMyList']) { echo ' class="inactive"'; } ?>>
                             <span>Meine Liste</span>
                             <ul></ul>
                         </div>

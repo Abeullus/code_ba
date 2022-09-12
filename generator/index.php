@@ -1,13 +1,14 @@
-<!-- In dieser Index Datei steht der Code für den Generator, mit dem eine .csv-Datei hochgeladen werden kann um den Inhalt anschließend
-in einer Navigationleiste auszugeben. -->
-
 <?php
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+    /* In dieser Index Datei steht der Code für den Generator, mit dem eine .csv-Datei hochgeladen werden kann um den Inhalt anschließend
+in einer Navigationleiste auszugeben. */
+
     session_start();
 
 // Verbindungsaufbau mit mySQL Datenbank, Anlegen aller benötigten Tabellen sofern diese nicht bereits existieren und Hochladen der .csv-Datei.
-    //$mysql = mysqli_connect('rdbms.strato.de', 'dbu2938481', 'Bachelor2022!', 'dbs8555354');
-
-    $mysql = mysqli_connect('localhost', 'FabZie', 'BA2022!', 'BA_Ziegler'); // --> lokaler Server über XAMPP 
+    $mysql = mysqli_connect('rdbms.strato.de', 'dbu2938481', 'Bachelor2022!', 'dbs8555354');
     
     mysqli_query($mysql, 'CREATE TABLE IF NOT EXISTS `Functions` (
         `Functions_ID` int(11) NOT NULL AUTO_INCREMENT,
@@ -59,11 +60,11 @@ in einer Navigationleiste auszugeben. -->
     
     if (!empty($_FILES)) :
         $csv = file_get_contents($_FILES['content']['tmp_name']);
+        
         $array = explode("\n", $csv);
         if (empty($array[count($array)-1])) {
             array_pop($array);
         }
-//        print_r($array);
         foreach ($array as &$val) {
             $val = str_getcsv($val, ';');
         }
@@ -118,6 +119,8 @@ in einer Navigationleiste auszugeben. -->
             $ev .= ']';
         }
         $ev .= '];';
+        
+//        echo $ev;exit;
         
         eval($ev);
         $json = json_encode($new_array, JSON_UNESCAPED_UNICODE);

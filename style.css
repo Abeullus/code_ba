@@ -232,6 +232,11 @@ nav.list ul ul {
     left: 100%;
 }
 
+nav.list > div:first-child ul ul {
+    max-height: calc(100vh - 500px);
+    overflow-y: scroll;
+}
+
 .list-color {
     background-color: #bdbdbd;
 }

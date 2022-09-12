@@ -1,7 +1,6 @@
-<!-- Index Datei für die auszuführende Studie -->
-
-
 <?php
+    // Index Datei für die auszuführende Studie
+
     session_start();
 
     /* Generierung der Datenbank für alle 3 Studiendurchläufe, um die bei der Durchführung erhaltenen Ergebnisse in dieser zu speichern.
@@ -9,30 +8,27 @@
 
 
     // Verbindung mit bereits vorhandener Datenbank
-    $mysql = mysqli_connect('localhost', 'FabZie', 'BA2022!', 'BA_Ziegler'); // --> lokaler Server über XAMPP 
+    $mysql = mysqli_connect('rdbms.strato.de', 'dbu2938481', 'Bachelor2022!', 'dbs8555354');
     
-    // $mysql = mysqli_connect('rdbms.strato.de', 'dbu2938481', 'Bachelor2022!', 'dbs8555354');
-   
-
-
     $ids = mysqli_query($mysql, 'SELECT `Session_ID` FROM `User`');
     
     if ($ids && $ids->num_rows) {
-        $ids = $ids->fetch_all();
-        $ids = array_merge(...$ids);
+        while ($id = $ids->fetch_row()) {
+            $id_array[] = $id[0];
+        }
+//        print_r($ids);exit;
     }
-
-
-    if (!$ids || !in_array(session_id(), $ids)) {
+    
+    if (!$id_array || !in_array(session_id(), $id_array)) {
         session_destroy();
         mysqli_query($mysql, 'INSERT INTO `User` (`Session_ID`) VALUES (NULL)');
         $id = mysqli_query($mysql, 'SELECT MAX(`Session_ID`) FROM `User`')->fetch_row()[0];
-        session_id($id);
+        session_id(sprintf('%03d', $id));
         session_start();
     }
     require('header.php');
     
-    //Hier wird die jeweilige Session-ID ausgelesen. 
+    //Hier wird die jeweilige Session-ID gesetzt. 
     if (isset($_GET['study'])) {
         $_SESSION['study'] = (int)$_GET['study'];
     } else {
@@ -44,14 +40,14 @@
         <div class="content">
             <img class="logo" src="./images/ur-logo-bildmarke-grau.png">
             <div class="content-inner">
-                <h1 class="h1">Willkommen zur Onlinestudie</h1>
+                <h1 class="h1">Willkommen</h1>
                 <p class="text" style="height: 4em">Bacon ipsum dolor amet bacon shankle picanha ball tip. 
                 Tri-tip shoulder jowl filet mignon venison flank. Prosciutto pork turducken, 
                 kielbasa ground round strip steak short</p>
                 <form action="./studies/questionnaire.php" method="POST">
                     <label style="display: block">
                         <input type="radio" name="datenschutz" value="1" required>
-                        Ich habe die <a href="./datenschutz.php" target="_blank">Datenschutzbestimmungen</a> gelesen und akzeptiert.
+                        Ich habe die <a href="./datenschutz.php" target="_blank">Datenschutzbestimmungen</a> gelesen und akzeptiert
                     </label>
                     <input type="submit" class="btn" value="Jetzt teilnehmen">
                 </form>

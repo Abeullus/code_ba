@@ -8,21 +8,20 @@ die Teilnehmer benötigte VP-Stunden erhalten können -->
     session_start();
 
     //Verbindung mit vorhandener Datenbank
-     //$mysql = mysqli_connect('rdbms.strato.de', 'dbu2938481', 'Bachelor2022!', 'dbs8555354');
-
-     $mysql = mysqli_connect('localhost', 'FabZie', 'BA2022!', 'BA_Ziegler'); // --> lokaler Server über XAMPP 
+    $mysql = mysqli_connect('rdbms.strato.de', 'dbu2938481', 'Bachelor2022!', 'dbs8555354');
     $ids = mysqli_query($mysql, 'SELECT `Session_ID` FROM `User`');
     
     if ($ids && $ids->num_rows) {
-        $ids = $ids->fetch_all();
-        $ids = array_merge(...$ids);
+        while ($id = $ids->fetch_row()) {
+            $id_array[] = $id[0];
+        }
 //        print_r($ids);exit;
     }
-    if (!$ids || !in_array(session_id(), $ids)) {
+    if (!$id_array || !in_array(session_id(), $id_array)) {
         session_destroy();
         mysqli_query($mysql, 'INSERT INTO `User` (`Session_ID`) VALUES (NULL)');
         $id = mysqli_query($mysql, 'SELECT MAX(`Session_ID`) FROM `User`')->fetch_row()[0];
-        session_id($id);
+        session_id(sprintf('%03d', $id));
         session_start();
     }
     

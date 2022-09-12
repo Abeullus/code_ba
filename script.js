@@ -1,11 +1,9 @@
 
-
 $(function() {
     $('input[name="searchWords"]').change(function() {
         $(this).parent().next('label').toggle().children('input').val('');
     });
     
-    // sobald eine Datei hochgeladen wurde, wird ein kurzes Feedback angezeigt
     $('input[type="file"]').change(function() {
         if (this.files.length) {
             $(this).siblings('.description').text(this.files[0].name + ' erfolgreich hochgeladen');
@@ -20,15 +18,12 @@ $(function() {
         }
     });
 
-
     // Design und Animaion List-Menu
-
+    
     $('nav.list span, nav.list label').click(function() {
         let $this = $(this);
         if ($this.next('ul').length && !$this.parents('.inactive').length) {
             if ($this.next('ul').hasClass('open')) {
-                // der fadeOut Effekt hat eine länge von 0.2 Sekunden. 
-                // Diese Zeit wird bei jeder Verwednung als W (Wartezeit des Systems) bei der Berechnung des KLM Modells addiert.
                 $this.next('ul').removeClass('open').stop().fadeOut(200);
             } else {
                 $('nav.list ul.open').removeClass('open').stop().fadeOut(200);
