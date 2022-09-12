@@ -160,8 +160,15 @@ Inhalt zu erstellen. Der Inhalt dieser Datei wird aus der im Generator erstellte
                             <ul></ul>
                         </div>
                     </nav>
+
+               
                 </header>
             </div>
+        </div>
+
+         <div class="footer"> 
+                <div class="descr1">Fabian Ziegler – Matrikel-Nr. 2082578</div>
+                <div class="descr2">Menü-Generator Version 1 - Lokal</div>
         </div>
     </body>
 </html>
