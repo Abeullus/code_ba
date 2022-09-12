@@ -168,11 +168,9 @@ in einer Navigationleiste auszugeben. */
         <div class="content">
             <img class="logo" src="../images/ur-logo-bildmarke-grau.png">
             <div class="content-inner">
-                <h1 class="h1">Menu Generator</h1>
-                <p class="text" style="height:6em">Bacon ipsum dolor amet bacon shankle picanha ball tip. 
-                Tri-tip shoulder jowl filet mignon venison flank. Prosciutto pork turducken, 
-                kielbasa ground round strip steak short loin chicken fatback. 
-                Corned beef t-bone andouille burgdoggen turducken filet mignon landjaeger sausage doner shoulder.
+                <h1 class="h1">Menü Generator</h1>
+                <p class="text" style="height:6em">Hier haben Sie die Möglichkeit eine CSV-Datei hochzuladen um daraus automatisch ein horizontales Baum-Menü zu generieren. 
+                Zudem haben Sie die Möglichkeit mehrere Funktionen zu wählen. Das Ergebnis wird in einer automtisch generierten Datenbank hinterlegt.
                 </p>
                 <form class="form" method="post" enctype="multipart/form-data">
                     <div><label class="label"><span class="btn btn-upload">Upload a file</span><input type="file" class="btn-upload" name="content"><span class="description"></span></label></div>
@@ -209,7 +207,7 @@ in einer Navigationleiste auszugeben. */
                             Wörter suchen?
                         </label>
                         <label>
-                            <span class="btn btn-upload">Upload a file</span>
+                            <span class="btn btn-upload" title="Am besten eine CSV-Datei mit nur einer Spalte :)">Upload a file</span>
                            <input type="file" name="words"/><span class="description"></span>
                          </label>
                         <!-- <label class="label"><input type="file" class="btn-upload" name="words"></label> -->
@@ -220,7 +218,7 @@ in einer Navigationleiste auszugeben. */
             </div>
             <div class="footer"> 
                 <div class="descr1">Fabian Ziegler – Matrikel-Nr. 2082578</div>
-                <div class="descr2">Menü-Generator Version 1 - Lokal</div>
+                <div class="descr2">Menü-Generator Version 1 - Online</div>
             </div>
         </div>
     </body>
