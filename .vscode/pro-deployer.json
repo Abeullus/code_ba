@@ -1,5 +1,5 @@
 {
-	"uploadOnSave": false,
+	"uploadOnSave": true,
 	"autoDelete": true,
 	"checkGitignore": false,
 	"activeTargets": [
@@ -14,20 +14,20 @@
 		{
 			"name": "My FTP",
 			"type": "ftp",
-			"host": "localhost",
+			"host": "ftp.strato.de",
 			"port": 21,
-			"user": "admin",
-			"password": "123456",
+			"user": "512038111.swh.strato-hosting.eu",
+			"password": "rahma8-bofpun-tutBer",
 			"dir": "/",
 			"transferDataType": "binary"
 		},
 		{
 			"name": "My SFTP",
 			"type": "sftp",
-			"host": "localhost",
+			"host": "ssh.strato.de",
 			"port": 22,
-			"user": "admin",
-			"password": "123456",
+			"user": "512038111.swh.strato-hosting.eu",
+			"password": "rahma8-bofpun-tutBer",
 			"dir": "/",
 			"privateKey": null,
 			"passphrase": null

@@ -2,10 +2,6 @@
     /* List.php ist zur generierung der Navigationsliste zuständig. Hier werden die im Generator wählbaren Checkboxen ausgewerten um so den richtigen
 Inhalt zu erstellen. Der Inhalt dieser Datei wird aus der im Generator erstellten Datenbank ausgelesen. */
 
-    ini_set ( 'display_errors' , 1 ); 
-    ini_set ( 'display_startup_errors' , 1 ); 
-    error_reporting ( E_ALL ); 
-
     session_start();
     
     $mysql = mysqli_connect('rdbms.strato.de', 'dbu2938481', 'Bachelor2022!', 'dbs8555354');

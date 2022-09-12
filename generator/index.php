@@ -1,7 +1,4 @@
 <?php
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
     /* In dieser Index Datei steht der Code für den Generator, mit dem eine .csv-Datei hochgeladen werden kann um den Inhalt anschließend
 in einer Navigationleiste auszugeben. */
 
@@ -124,19 +121,6 @@ in einer Navigationleiste auszugeben. */
         
         eval($ev);
         $json = json_encode($new_array, JSON_UNESCAPED_UNICODE);
-        $csv = file_get_contents($_FILES['words']['tmp_name']);
-        $array = explode("\n", $csv);
-        if (empty($array[count($array)-1])) {
-            array_pop($array);
-        }
-        foreach($array as &$val) {
-            $val = str_replace(array("\r", "\n"), '', $val);
-        }
-        $words1 = $array;
-        shuffle($array);
-        $words2 = $array;
-        shuffle($array);
-        $words3 = $array;
 //        print_r($words1);
 //        print_r($words2);
 //        print_r($words3);exit;
@@ -149,6 +133,20 @@ in einer Navigationleiste auszugeben. */
         $functionsID = mysqli_query($mysql, 'SELECT MAX(`Functions_ID`) FROM `Functions`')->fetch_row()[0];
         
         if ($_POST['searchWords']) {
+            $csv = file_get_contents($_FILES['words']['tmp_name']);
+            $array = explode("\n", $csv);
+            if (empty($array[count($array)-1])) {
+                array_pop($array);
+            }
+            foreach($array as &$val) {
+                $val = str_replace(array("\r", "\n"), '', $val);
+            }
+            $words1 = $array;
+            shuffle($array);
+            $words2 = $array;
+            shuffle($array);
+            $words3 = $array;
+            
             mysqli_query($mysql, 'INSERT INTO `WordList` (`WordsToSearch`, `Functions_ID`) VALUES (\'' . json_encode($words1, JSON_UNESCAPED_UNICODE) . '\', ' . $functionsID . '), (\'' . json_encode($words2, JSON_UNESCAPED_UNICODE) . '\', ' . $functionsID . '), (\'' . json_encode($words3, JSON_UNESCAPED_UNICODE) . '\', ' . $functionsID . ')');
             
 //            echo $mysql->error;exit;
