@@ -40,7 +40,7 @@ require('header.php');
     <body>
         <div class="content">
             
-            <img class="logo" src="./images/ur-logo-bildmarke-grau.png">
+            <a href="../index.php"> <img class="logo" src="../../images/ur-logo-bildmarke-grau.png" ></a>
             <div class="content-inner">
 
             <h1 class="h1">Datenschutz&shy;erkl&auml;rung</h1>
