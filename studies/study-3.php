@@ -1,6 +1,7 @@
-<!-- Hier steht der Code und Content für den 3. Studiendurchlauf. Hier soll der Teilnehmer wieder die angegebenen Wörter suchen und zu seiner eigenen Liste hinzufügen. --> 
-
 <?php
+
+/* Hier steht der Code und Content für den 3. Studiendurchlauf. Hier soll der Teilnehmer wieder die angegebenen Wörter suchen und zu seiner eigenen Liste hinzufügen. */ 
+
     session_start();
 
     //Verbindung mit bereits vorhandener Datenbank

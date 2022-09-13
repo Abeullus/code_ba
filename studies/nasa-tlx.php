@@ -1,10 +1,12 @@
-<!-- Hier steht der Content für den NASA-TLX Fragebogen, der am Ende der Studie ausgeführt werden soll. 
+<?php
+
+/* Hier steht der Content für den NASA-TLX Fragebogen, der am Ende der Studie ausgeführt werden soll. 
 Dieser wird wie die allgemeinen Fragebögen zu Beginn der Studie mit einem "iFrame" in den HTML-Quellcode eingepflegt. 
 
 Nach erfolgreichen Ausfüllen des Fragebogens erscheint wieder ein Button, um die Studie zu beenden. Dieser führt zur Feedback-Seite, auf der 
-die Teilnehmer benötigte VP-Stunden erhalten können --> 
+die Teilnehmer benötigte VP-Stunden erhalten können */ 
 
-<?php
+
     session_start();
 
     //Verbindung mit vorhandener Datenbank
