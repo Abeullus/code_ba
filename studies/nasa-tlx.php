@@ -49,7 +49,7 @@ die Teilnehmer benötigte VP-Stunden erhalten können */
             <div class="study-headline">
                 <h1>NASA-TLX</h1>
             </div>
-            <a class="btn-continue" href="../feedback.php">Studie beenden</a>
+            <a class="btn-continue" href="./feedback.php">Studie beenden</a>
             <img class="logo" src="../images/ur-logo-bildmarke-grau.png">
             <div class="content-inner">
                 <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSexPMleVHR3aUOsaSordE5ClFl5Rv6kK0XAMIIS3QpoJWuNeQ/viewform?embedded=true" width="640" height="1092" frameborder="0" marginheight="0" marginwidth="0">Wird geladen�</iframe>
