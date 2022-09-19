@@ -40,9 +40,10 @@ Hier kann optinal noch Inhalt für Versuchspersonenstunden eingefügt werden
             <img class="logo" src="./images/ur-logo-bildmarke-grau.png">
             <div class="content-inner">
                 <h1 class="h1">Vielen Dank für Ihre Teilnahme!</h1>
-                <p class="text" style="height: 4em">Bacon ipsum dolor amet bacon shankle picanha ball tip. 
-                Tri-tip shoulder jowl filet mignon venison flank. Prosciutto pork turducken, 
-                kielbasa ground round strip steak short</p>
+                <p class="text" style="height: 4em">Sofern für die Teilnahme an der Studie <b>VP-Stunden</b> angerechnet werden sollen, bitte ich Sie darum noch das nachfolgende Formular mit dem dafür Benötigten Daten auszufüllen. <br>
+                Sofern <b>keine VP-Stunden</b> benötigt werden, können Sie das Browser-Fenster schließen.
+                </p>
+                <input type="submit" class="btn" onclick="window.location.href='https://docs.google.com/forms/d/e/1FAIpQLSepHefNTiObxzZcLvF9Hg3w0YxWZWFv0Y6y1tIhTXSzXSq71g/viewform?usp=sf_link'" value="VP-Stunden">
             </div>
 
             <div class="footer"> 

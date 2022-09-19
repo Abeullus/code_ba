@@ -40,14 +40,21 @@
         <div class="content">
             <img class="logo" src="./images/ur-logo-bildmarke-grau.png">
             <div class="content-inner">
-                <h1 class="h1">Willkommen</h1>
-                <p class="text" style="height: 4em">Bacon ipsum dolor amet bacon shankle picanha ball tip. 
-                Tri-tip shoulder jowl filet mignon venison flank. Prosciutto pork turducken, 
-                kielbasa ground round strip steak short</p>
+                <h1 class="h1">Willkommen zur Online-Studie <br>"vom Novizen zum Experten"</h1>
+                <p class="text" style="height: 4em">Die Studie besteht aus insgesamt <b> drei Fragebögen </b> und  <b> fünf Versuchsdurchläufen </b>, die Ihnen nacheinander gezeigt werden.</p>
+                Sie werden bei jedem Fragebogen gebeten Ihre <b> Session-ID </b> einzugeben, diese befindet sich links unten im Balken. 
+
+                Die Studie dauert ca. 30 Minuten. Sofern benötigt , erhalten Sie am Ende nach erfolgreicher Teilname  <b> 0,5 VP </b> . Zudem gibt es eine Verlosung für einen 15€ Gutschein eurer Wahl.
+
+                <br>
+
+                Vielen Dank, dass Sie mir bei meiner Bachelorarbeit helfen!
+
+
                 <form action="./studies/questionnaire.php" method="POST">
                     <label style="display: block">
                         <input type="radio" name="datenschutz" value="1" required>
-                        Ich habe die <a href="./datenschutz.php" target="_blank">Datenschutzbestimmungen</a> gelesen und akzeptiert
+                        Ich habe die <a href="../datenschutz.php" target="_blank">Datenschutzbestimmungen</a> gelesen und akzeptiert
                     </label>
                     <input type="submit" class="btn" value="Jetzt teilnehmen">
                 </form>

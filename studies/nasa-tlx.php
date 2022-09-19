@@ -47,7 +47,7 @@ die Teilnehmer benötigte VP-Stunden erhalten können */
 
         <div class="content">
             <div class="study-headline">
-                <h1>NASA-TLX</h1>
+                <h1>Allgemeine Fragen Teil 3</h1>
             </div>
             <a class="btn-continue" href="../feedback.php">Studie beenden</a>
             <img class="logo" src="../images/ur-logo-bildmarke-grau.png">

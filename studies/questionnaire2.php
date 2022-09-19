@@ -44,7 +44,7 @@ Dies hat zur Folge, dass das iFrame erneut geladen wird. Dieser Ladevorgang wird
             <img class="logo" src="../images/ur-logo-bildmarke-grau.png">
             <a class="btn-continue" href="./study.php">Weiter</a>
             <div class="content-inner">
-                <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSfokT4F4PbyNGexxsuVWGYrM_I8tAdtVtFlCQERnNIhSP2kuQ/viewform?embedded=true" width="640" height="1092" frameborder="0" marginheight="0" marginwidth="0">Wird geladen…</iframe>
+                <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSdbdTwR9HEK3HtlqzZqx7v46MiTvbf28Kx4Ls8iPBduopR5Dw/viewform?embedded=true" width="640" height="1092" frameborder="0" marginheight="0" marginwidth="0">Wird geladen…</iframe>
             </div>
             
             <div class="footer"> 
