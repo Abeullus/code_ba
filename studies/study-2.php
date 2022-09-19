@@ -55,7 +55,7 @@
         <div class="content content-preview ">
             <div class="study-headline">
                 <h1>Versuchsdurchlauf 2</h1>
-                <p>Finden Sie das Wort: <br> <br>  <span class="word"><?= json_decode($wordList[1])[0] ?></span></p>
+                <p>Finden Sie das Wort:<b> <br> <br>  <span class="word"><?= json_decode($wordList[1])[0] ?></span> </b></p>
             </div>
             <img class="logo" src="../images/ur-logo-bildmarke-grau.png">
             <div class="content-inner content-bg">

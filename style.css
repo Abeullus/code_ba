@@ -294,3 +294,8 @@ nav.list > div.inactive > span {
 .uploadWordList label:last-child {
     display: none;
 }
+
+.word {
+    font-size: 1.5em;
+    color: rgb(156, 0, 76);
+}
