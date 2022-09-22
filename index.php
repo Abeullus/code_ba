@@ -41,12 +41,12 @@
             <img class="logo" src="./images/ur-logo-bildmarke-grau.png">
             <div class="content-inner">
                 <h1 class="h1">Willkommen zur Online-Studie "vom Novizen zum Experten" </h1>
-                <p class="text" style="height: 5em">Die Studie besteht aus insgesamt <b> drei Fragebögen </b> und  <b> fünf Versuchsdurchläufen </b>, die Ihnen nacheinander gezeigt werden. 
-                Sie werden bei jedem Fragebogen gebeten Ihre <b> Session-ID </b> einzugeben, diese befindet sich links unten im Balken. 
-                Die Studie dauert ca. 30 Minuten. Sofern benötigt , erhalten Sie am Ende nach erfolgreicher Teilname  <b> 0,5 VP </b> . Zudem gibt es eine Verlosung für einen 15€ Gutschein eurer Wahl.
+                <p class="text" style="height: 5em">Die Studie besteht aus insgesamt <b> drei Fragebögen </b> und  <b> fünf Versuchsdurchläufen</b>, die Ihnen nacheinander gezeigt werden. 
+                Sie werden bei jedem Fragebogen gebeten Ihre <b> Session-ID </b> einzugeben, diese befindet sich links unten in der Leiste. 
+                Die Studie dauert ca. 30 Minuten. Sofern benötigt, erhalten nach erfolgreicher Teilnahme am Ende  <b> 0,5 VP </b> . Zudem gibt es eine Verlosung für einen 15€ Gutschein Ihrer Wahl.
                 <br>
                 <br> 
-                Vielen Dank, dass Sie mir bei meiner Bachelorarbeit helfen!</p>
+                Vielen Dank, dass Sie mir bei meiner Bachelorarbeit helfen! </p>
                 <br>
                 <br>
 
