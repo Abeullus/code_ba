@@ -16,7 +16,7 @@
 
   /** Used as a reference to the global object. */
   var root = (objectTypes[typeof window] && window) || this;
-
+  
   /** Backup possible global object. */
   var oldRoot = root;
 
