@@ -90,7 +90,7 @@
             </div>
         </div>
         <script src="platform.js"></script>
-        <script src="klm.js"></script>
+        <script src="settings.js"></script>
     </body>
 </html>
 

@@ -208,7 +208,7 @@ Bei jedem Durchlauf wird ein KLM-Modell generiert und in der Datenbank gespeiche
             </div>
         </div>
         <script src="platform.js"></script>
-        <script src="klm.js"></script>
+        <script src="settings.js"></script>
     </body>
 </html>
 
