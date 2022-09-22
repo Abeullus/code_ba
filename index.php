@@ -37,7 +37,7 @@
 ?>
 
 <!-- HTML Content für die 1. Seite der Studie. Hier befindet sich eine kurze Erklärung, sowie die Checkbox für die benötigten Datenschutzbestimmungen --> 
-        <div class="content">
+        <div class="content content-start">
             <img class="logo" src="./images/ur-logo-bildmarke-grau.png">
             <div class="content-inner">
                 <h1 class="h1">Willkommen zur Online-Studie "vom Novizen zum Experten" </h1>

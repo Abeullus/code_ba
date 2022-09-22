@@ -1,4 +1,4 @@
-
+// Design und Animaion List-Menu
 $(function() {
     $('input[name="searchWords"]').change(function() {
         $(this).parent().next('label').toggle().children('input').val('');
@@ -17,8 +17,6 @@ $(function() {
             $(this).children('input').remove();
         }
     });
-
-    // Design und Animaion List-Menu
     
     $('nav.list span, nav.list label').click(function() {
         let $this = $(this);

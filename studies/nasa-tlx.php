@@ -38,7 +38,7 @@ die Teilnehmer benötigte VP-Stunden erhalten können */
     }
     
     $timings = json_decode($_POST['timings'], true);
-    mysqli_query($mysql, 'INSERT INTO `Experiment` (`Menu_ID`, `User_ID`, `UserSuccessRate`, `TimeOnTask`, `TaskErrorRate`, `ClicksTotal`, `KLM`, `KLM-Time`) VALUES (' . $_SESSION['study'] . ', ' . session_id() . ', ' . (float)$_POST['tsr'] . ', ' . (float)$_POST['realtime'] . ', ' . (int)$_POST['errors'] . ', ' . (int)$timings['bb'] . ', \'' . $_POST['timings'] . '\', ' . (float)$_POST['time'] . ')');
+    mysqli_query($mysql, 'INSERT INTO `Experiment` (`Experiment_ID`, `Durchgang_ID`, `Menu_ID`, `User_ID`, `UserSuccessRate`, `TimeOnTask`, `TaskErrorRate`, `ClicksTotal`, `KLM`, `KLM-Time`, `Clicks`, `SystemInfo`) VALUES (' . $_SESSION['exp'] . ', 5, ' . $_SESSION['study'] . ', ' . session_id() . ', ' . (float)$_POST['tsr'] . ', ' . (float)$_POST['realtime'] . ', ' . (int)$_POST['errors'] . ', ' . (int)$timings['bb'] . ', \'' . $_POST['timings'] . '\', ' . (float)$_POST['time'] . ', \'' . $_POST['clicks'] . '\', \'' . $_POST['platform'] . '\')');
     
     require('../header.php');
 ?>
@@ -56,7 +56,7 @@ die Teilnehmer benötigte VP-Stunden erhalten können */
             </div>
             <div class="footer"> 
                 <div class="id">Session ID: #<?= session_id() ?></div>
-                <div class="page">7</div>
+                <div class="page">9</div>
             </div>
         </div>
     </body>

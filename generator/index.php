@@ -41,7 +41,8 @@ in einer Navigationleiste auszugeben. */
       ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;');
     
     mysqli_query($mysql, 'CREATE TABLE IF NOT EXISTS `Experiment` (
-        `Experiment_ID` int(11) NOT NULL AUTO_INCREMENT,
+        `Experiment_ID` int(11) NOT NULL,
+        `Durchgang_ID` int(11) NOT NULL,
         `Menu_ID` int(11) NOT NULL,
         `User_ID` int(11) NOT NULL,
         `UserSuccessRate` float NOT NULL,
@@ -50,7 +51,9 @@ in einer Navigationleiste auszugeben. */
         `ClicksTotal` int(11) NOT NULL,
         `KLM` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL CHECK (json_valid(`KLM`)),
         `KLM-Time` float NOT NULL,
-        PRIMARY KEY (`Experiment_ID`),
+        `Clicks` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL CHECK (json_valid(`Clicks`)),
+        `SystemInfo` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL CHECK (json_valid(`SystemInfo`)),
+        PRIMARY KEY (`Experiment_ID`, `Durchgang_ID`),
         FOREIGN KEY (`Menu_ID`) REFERENCES `Menu-Generator`(`Menu_ID`),
         FOREIGN KEY (`User_ID`) REFERENCES `User`(`Session_ID`)
       ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;');
@@ -146,8 +149,12 @@ in einer Navigationleiste auszugeben. */
             $words2 = $array;
             shuffle($array);
             $words3 = $array;
+            shuffle($array);
+            $words4 = $array;
+            shuffle($array);
+            $words5 = $array;
             
-            mysqli_query($mysql, 'INSERT INTO `WordList` (`WordsToSearch`, `Functions_ID`) VALUES (\'' . json_encode($words1, JSON_UNESCAPED_UNICODE) . '\', ' . $functionsID . '), (\'' . json_encode($words2, JSON_UNESCAPED_UNICODE) . '\', ' . $functionsID . '), (\'' . json_encode($words3, JSON_UNESCAPED_UNICODE) . '\', ' . $functionsID . ')');
+            mysqli_query($mysql, 'INSERT INTO `WordList` (`WordsToSearch`, `Functions_ID`) VALUES (\'' . json_encode($words1, JSON_UNESCAPED_UNICODE) . '\', ' . $functionsID . '), (\'' . json_encode($words2, JSON_UNESCAPED_UNICODE) . '\', ' . $functionsID . '), (\'' . json_encode($words3, JSON_UNESCAPED_UNICODE) . '\', ' . $functionsID . '), (\'' . json_encode($words4, JSON_UNESCAPED_UNICODE) . '\', ' . $functionsID . '), (\'' . json_encode($words5, JSON_UNESCAPED_UNICODE) . '\', ' . $functionsID . ')');
             
 //            echo $mysql->error;exit;
         }

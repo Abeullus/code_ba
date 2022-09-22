@@ -1,33 +1,5 @@
 <?php 
 
-    session_start();
-
-    $mysql = mysqli_connect('rdbms.strato.de', 'dbu2938481', 'Bachelor2022!', 'dbs8555354');
-    $ids = mysqli_query($mysql, 'SELECT `Session_ID` FROM `User`');
-    
-    if ($ids && $ids->num_rows) {
-        while ($id = $ids->fetch_row()) {
-            $id_array[] = $id[0];
-        }
-    }
-    if (!$id_array || !in_array(session_id(), $id_array)) {
-        session_destroy();
-        mysqli_query($mysql, 'INSERT INTO `User` (`Session_ID`) VALUES (NULL)');
-        $id = mysqli_query($mysql, 'SELECT MAX(`Session_ID`) FROM `User`')->fetch_row()[0];
-        session_id(sprintf('%03d', $id));
-        session_start();
-    }
-    
-    if (!isset($_SESSION['study'])) {
-        header('Location: /');
-    }
-    
-    $study = mysqli_query($mysql, 'SELECT * FROM `Menu-Generator` WHERE `Menu_ID`=' . $_SESSION['study'])->fetch_row();
-    
-    if (!$study || empty($_POST)) {
-        header('Location: /');
-    }
-
 require('header.php');
 
 ?>
@@ -129,7 +101,7 @@ require('header.php');
 
                 <h2 class="h2">4. Datenerfassung auf dieser Website</h2>
 
-                <h class="h3">Anfrage per E-Mail, Telefon oder Telefax</h3>
+                <h3 class="h3">Anfrage per E-Mail, Telefon oder Telefax</h3>
                 <p class="text">Wenn Sie uns per E-Mail, Telefon oder Telefax kontaktieren, wird Ihre Anfrage inklusive aller daraus hervorgehenden personenbezogenen Daten (Name, Anfrage) zum Zwecke der Bearbeitung Ihres Anliegens bei uns gespeichert und verarbeitet. Diese Daten geben wir nicht ohne Ihre Einwilligung weiter.</p> <p>Die Verarbeitung dieser Daten erfolgt auf Grundlage von Art. 6 Abs. 1 lit. b DSGVO, sofern Ihre Anfrage mit der Erf&uuml;llung eines Vertrags zusammenh&auml;ngt oder zur Durchf&uuml;hrung vorvertraglicher Ma&szlig;nahmen erforderlich ist. In allen &uuml;brigen F&auml;llen beruht die Verarbeitung auf unserem berechtigten Interesse an der effektiven Bearbeitung der an uns gerichteten Anfragen (Art. 6 Abs. 1 lit. f DSGVO) oder auf Ihrer Einwilligung (Art. 6 Abs. 1 lit. a DSGVO) sofern diese abgefragt wurde; die Einwilligung ist jederzeit widerrufbar.</p> <p>Die von Ihnen an uns per Kontaktanfragen &uuml;bersandten Daten verbleiben bei uns, bis Sie uns zur L&ouml;schung auffordern, Ihre Einwilligung zur Speicherung widerrufen oder der Zweck f&uuml;r die Datenspeicherung entf&auml;llt (z.&nbsp;B. nach abgeschlossener Bearbeitung Ihres Anliegens). Zwingende gesetzliche Bestimmungen &ndash; insbesondere gesetzliche Aufbewahrungsfristen &ndash; bleiben unber&uuml;hrt.</p>
                
                 <h3 class="h3">Google Forms</h3>
@@ -154,8 +126,8 @@ require('header.php');
             </div>
                 
             <div class="footer"> 
-                <div class="id">Session ID: #<?= session_id() ?></div>
-                <div class="page">1</div>
+                <div class="id">&nbsp;</div>
+                <div class="page">&nbsp;</div>
             </div>
         </div>
     </body>

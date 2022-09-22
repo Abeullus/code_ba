@@ -1,6 +1,6 @@
 <?php
 
-/* Hier steht der Code und Content für den 2. Studiendurchlauf. Hier soll der Teilnehmer wieder die angegebenen Wörter suchen und zu seiner eigenen Liste hinzufügen. */
+/* Hier steht der Code und Content für den 4. Studiendurchlauf. Hier soll der Teilnehmer wieder die angegebenen Wörter suchen und zu seiner eigenen Liste hinzufügen. */ 
 
     session_start();
 
@@ -33,19 +33,9 @@
     }
     
     $timings = json_decode($_POST['timings'], true);
-    
-    $exp = mysqli_query($mysql, 'SELECT MAX(`Experiment_ID`) FROM `Experiment` LIMIT 1');
-    if ($exp && $exp->num_rows) {
-        $_SESSION['exp'] = $exp->fetch_row()[0] + 1;
-    } else {
-        $_SESSION['exp'] = 1;
-    }
-    
-    mysqli_query($mysql, 'INSERT INTO `Experiment` (`Experiment_ID`, `Durchgang_ID`, `Menu_ID`, `User_ID`, `UserSuccessRate`, `TimeOnTask`, `TaskErrorRate`, `ClicksTotal`, `KLM`, `KLM-Time`, `Clicks`, `SystemInfo`) VALUES (' . $_SESSION['exp'] . ', 1, ' . $_SESSION['study'] . ', ' . session_id() . ', ' . (float)$_POST['tsr'] . ', ' . (float)$_POST['realtime'] . ', ' . (int)$_POST['errors'] . ', ' . (int)$timings['bb'] . ', \'' . $_POST['timings'] . '\', ' . (float)$_POST['time'] . ', \'' . $_POST['clicks'] . '\', \'' . $_POST['platform'] . '\')');
+    mysqli_query($mysql, 'INSERT INTO `Experiment` (`Experiment_ID`, `Durchgang_ID`, `Menu_ID`, `User_ID`, `UserSuccessRate`, `TimeOnTask`, `TaskErrorRate`, `ClicksTotal`, `KLM`, `KLM-Time`, `Clicks`, `SystemInfo`) VALUES (' . $_SESSION['exp'] . ', 3, ' . $_SESSION['study'] . ', ' . session_id() . ', ' . (float)$_POST['tsr'] . ', ' . (float)$_POST['realtime'] . ', ' . (int)$_POST['errors'] . ', ' . (int)$timings['bb'] . ', \'' . $_POST['timings'] . '\', ' . (float)$_POST['time'] . ', \'' . $_POST['clicks'] . '\', \'' . $_POST['platform'] . '\')');
     
     require('../header.php');
-    
-//    echo $mysql->error;
     
     $menu_obj = json_decode($study[2], true);
     $deepest_elements = list_deepest_elements($menu_obj);
@@ -53,16 +43,16 @@
     
     $functions = mysqli_query($mysql, 'SELECT * FROM `Functions` WHERE `Functions_ID`=' . $study[1])->fetch_assoc();
     
-    $wordList = mysqli_query($mysql, 'SELECT `WordList_ID`, `WordsToSearch` FROM `WordList` WHERE `Functions_ID`=' . $study[1] . ' ORDER BY `WordList_ID` ASC LIMIT 1, 1')->fetch_row();
+    $wordList = mysqli_query($mysql, 'SELECT `WordList_ID`, `WordsToSearch` FROM `WordList` WHERE `Functions_ID`=' . $study[1] . ' ORDER BY `WordList_ID` ASC LIMIT 3, 1')->fetch_row();
 ?>
         <script>
             const words = <?= $wordList[1] ?>;
-            const durchlauf = 2;
+            const durchlauf = 4;
         </script>
-        <div class="content content-preview ">
+        <div class="content content-preview">
             <div class="study-headline">
-                <h1>Versuchsdurchlauf 2</h1>
-                <p>Finden Sie das Wort:<b> <br> <br>  <span class="word"><?= json_decode($wordList[1])[0] ?></span> </b></p>
+                <h1>Versuchsdurchlauf 4</h1>
+                <p>Finden Sie das Wort:<b> <br> <br>  <span class="word"><?= json_decode($wordList[1])[0] ?></span> </b> </p>
             </div>
             <img class="logo" src="../images/ur-logo-bildmarke-grau.png">
             <div class="content-inner content-bg">
@@ -84,7 +74,7 @@
                     </nav>
                 </header>
             </div>
-            <form action="study-3.php" method="POST" class="hiddenform">
+            <form action="study-5.php" method="POST" class="hiddenform">
                 <input type="hidden" name="time">
                 <input type="hidden" name="timings">
                 <input type="hidden" name="errors">
@@ -96,7 +86,7 @@
 
             <div class="footer"> 
                 <div class="id">Session ID: #<?= session_id() ?></div>
-                <div class="page">5</div>
+                <div class="page">7</div>
             </div>
         </div>
         <script src="platform.js"></script>

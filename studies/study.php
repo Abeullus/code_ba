@@ -198,6 +198,8 @@ Bei jedem Durchlauf wird ein KLM-Modell generiert und in der Datenbank gespeiche
                 <input type="hidden" name="errors">
                 <input type="hidden" name="realtime">
                 <input type="hidden" name="tsr">
+                <input type="hidden" name="clicks">
+                <input type="hidden" name="platform">
             </form>
 
             <div class="footer"> 
@@ -205,6 +207,7 @@ Bei jedem Durchlauf wird ein KLM-Modell generiert und in der Datenbank gespeiche
                 <div class="page">4</div>
             </div>
         </div>
+        <script src="platform.js"></script>
         <script src="klm.js"></script>
     </body>
 </html>

@@ -24,7 +24,7 @@
     
     $study = mysqli_query($mysql, 'SELECT * FROM `Menu-Generator` WHERE `Menu_ID`=' . $_SESSION['study'])->fetch_row();
     
-    if (!$study || empty($_POST)) {
+    if (!$study) {
         header('Location: /');
     }
 
@@ -43,12 +43,13 @@ Hier kann optinal noch Inhalt für Versuchspersonenstunden eingefügt werden
                 <p class="text" style="height: 4em">Sofern für die Teilnahme an der Studie <b>VP-Stunden</b> angerechnet werden sollen, bitte ich Sie darum noch das nachfolgende Formular mit dem dafür Benötigten Daten auszufüllen. <br>
                 Sofern <b>keine VP-Stunden</b> benötigt werden, können Sie das Browser-Fenster schließen.
                 </p>
-                <input type="submit" class="btn" onclick="window.location.href='https://docs.google.com/forms/d/e/1FAIpQLSepHefNTiObxzZcLvF9Hg3w0YxWZWFv0Y6y1tIhTXSzXSq71g/viewform?usp=sf_link'" value="VP-Stunden">
+                <a class="btn" href="https://docs.google.com/forms/d/e/1FAIpQLSepHefNTiObxzZcLvF9Hg3w0YxWZWFv0Y6y1tIhTXSzXSq71g/viewform?usp=sf_link">VP-Stunden</a>
+                <a class="btn" href="/">Studie beenden</a>
             </div>
 
             <div class="footer"> 
                 <div class="id">Session ID: #<?= session_id() ?></div>
-                <div class="page">8</div>
+                <div class="page">10</div>
             </div>
         </div>
     </body>
