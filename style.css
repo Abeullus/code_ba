@@ -133,13 +133,16 @@ input[type="file"] {
 
 
 .content-inner {
-    width: 40%;
+    width: 55%;
 
 }
 
 .content-preview {
     height: 100vh;
-    padding: 230px;
+    padding-top: 13em;
+    padding-left: 10em;
+    padding-right: 10em;
+    padding-bottom: 9em;
 }
 
 .content-preview .content-inner {
@@ -152,6 +155,7 @@ input[type="file"] {
     position: absolute;
     left: 30px;
     top: 30px;
+    width: 10em;;
 }
 
 .form {
