@@ -44,7 +44,7 @@ Hier kann optinal noch Inhalt für Versuchspersonenstunden eingefügt werden
                 Sofern <b>keine VP-Stunden</b> benötigt werden, können Sie das Browser-Fenster schließen.
                 </p>
                 <a class="btn" href="https://docs.google.com/forms/d/e/1FAIpQLSepHefNTiObxzZcLvF9Hg3w0YxWZWFv0Y6y1tIhTXSzXSq71g/viewform?usp=sf_link">VP-Stunden</a>
-                <a class="btn" href="/">Studie beenden</a>
+                <a class="btn" href="https://docs.google.com/forms/d/e/1FAIpQLScWewwIWbDoV8DLEdYh4RzTIGlb7nA9xnjtst08oxiSCG0akA/viewform?usp=sf_link">Studie beenden</a>
             </div>
 
             <div class="footer"> 
