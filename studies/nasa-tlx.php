@@ -1,10 +1,12 @@
-<!-- Hier steht der Content für den NASA-TLX Fragebogen, der am Ende der Studie ausgeführt werden soll. 
+<?php
+
+/* Hier steht der Content für den NASA-TLX Fragebogen, der am Ende der Studie ausgeführt werden soll. 
 Dieser wird wie die allgemeinen Fragebögen zu Beginn der Studie mit einem "iFrame" in den HTML-Quellcode eingepflegt. 
 
 Nach erfolgreichen Ausfüllen des Fragebogens erscheint wieder ein Button, um die Studie zu beenden. Dieser führt zur Feedback-Seite, auf der 
-die Teilnehmer benötigte VP-Stunden erhalten können --> 
+die Teilnehmer benötigte VP-Stunden erhalten können */ 
 
-<?php
+
     session_start();
 
     //Verbindung mit vorhandener Datenbank
@@ -36,7 +38,7 @@ die Teilnehmer benötigte VP-Stunden erhalten können -->
     }
     
     $timings = json_decode($_POST['timings'], true);
-    mysqli_query($mysql, 'INSERT INTO `Experiment` (`Menu_ID`, `User_ID`, `UserSuccessRate`, `TimeOnTask`, `TaskErrorRate`, `ClicksTotal`, `KLM`, `KLM-Time`) VALUES (' . $_SESSION['study'] . ', ' . session_id() . ', ' . (float)$_POST['tsr'] . ', ' . (float)$_POST['realtime'] . ', ' . (int)$_POST['errors'] . ', ' . (int)$timings['bb'] . ', \'' . $_POST['timings'] . '\', ' . (float)$_POST['time'] . ')');
+    mysqli_query($mysql, 'INSERT INTO `Experiment` (`Experiment_ID`, `Durchgang_ID`, `Menu_ID`, `User_ID`, `UserSuccessRate`, `TimeOnTask`, `TaskErrorRate`, `ClicksTotal`, `KLM`, `KLM-Time`, `Clicks`, `SystemInfo`) VALUES (' . $_SESSION['exp'] . ', 5, ' . $_SESSION['study'] . ', ' . session_id() . ', ' . (float)$_POST['tsr'] . ', ' . (float)$_POST['realtime'] . ', ' . (int)$_POST['errors'] . ', ' . (int)$timings['bb'] . ', \'' . $_POST['timings'] . '\', ' . (float)$_POST['time'] . ', \'' . $_POST['clicks'] . '\', \'' . $_POST['platform'] . '\')');
     
     require('../header.php');
 ?>
@@ -45,7 +47,7 @@ die Teilnehmer benötigte VP-Stunden erhalten können -->
 
         <div class="content">
             <div class="study-headline">
-                <h1>NASA-TLX</h1>
+                <h1>Allgemeine Fragen Teil 3</h1>
             </div>
             <a class="btn-continue" href="../feedback.php">Studie beenden</a>
             <img class="logo" src="../images/ur-logo-bildmarke-grau.png">
@@ -54,7 +56,7 @@ die Teilnehmer benötigte VP-Stunden erhalten können -->
             </div>
             <div class="footer"> 
                 <div class="id">Session ID: #<?= session_id() ?></div>
-                <div class="page">7</div>
+                <div class="page">9</div>
             </div>
         </div>
     </body>

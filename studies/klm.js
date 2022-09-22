@@ -5,7 +5,6 @@ Zudem wird hier noch die reale Zeit des jeweiligen Studiendurchlaufs, sowie die 
 
 * Quelle: Kieras, D. (2001). Using the keystroke-level model to estimate execution times. University of Michigan, 555 */ 
 
-
 var time = 0;
 var pos = [0,0];
 var timeOut, thinking;
@@ -28,6 +27,7 @@ var timings = {
 var errors = 0;
 var realtime = 0;
 var starttime = Date.now();
+var clicks = [];
 
 time += 1.2; //M wird zu Beginn immer automatisch addiert.
 timings.m += 1;
@@ -61,7 +61,14 @@ $(document).mousemove(function(e) {
 });
 
 //Zeit bei Klick auf Mouse-Button --> BB 
-$(document).click(function() {
+$(document).click(function(e) {
+    if ($(e.target).is('label, span')) {
+        clicks.push($(e.target).text());
+    } else if ($(e.target).is('nav')) {
+        clicks.push('Nav-Leiste');
+    } else if ($(e.target).hasClass('content-bg')) {
+        clicks.push('Hintergrund');
+    }
     time += .2;
     timings.bb += 1;
 });
@@ -94,7 +101,7 @@ $('nav span, nav label').click(function() {
             //Sobald alle Wörter gefunden wurden, startet automatisch der Timer und es geht weiter in den nächsten Durchlauf
             if (currentWord >= words.length) {
                 realtime = Date.now() - starttime;
-                if (durchlauf < 3) {
+                if (durchlauf < 5) {
                     $('h1').html('Sie haben alle W&ouml;rter gefunden!');
                     $('h1 + p').html('In wenigen Sekunden geht es weiter mit Durchlauf ' + (durchlauf + 1));
                     $('.content-inner').replaceWith('<div class="countdown">30</div>');
@@ -113,6 +120,8 @@ $('nav span, nav label').click(function() {
                             $('input[name="timings"]').val(JSON.stringify(timings));
                             $('input[name="errors"]').val(errors);
                             $('input[name="tsr"]').val(words.length / (words.length + errors));
+                            $('input[name="clicks"]').val(JSON.stringify(clicks));
+                            $('input[name="platform"]').val(platform.description + ' (' + screen.width + 'x' + screen.height + ')');
                             $('form').submit();
                         }
                     }, 1000);
@@ -121,6 +130,8 @@ $('nav span, nav label').click(function() {
                     $('input[name="time"]').val(time);
                     $('input[name="timings"]').val(JSON.stringify(timings));
                     $('input[name="errors"]').val(errors);
+                    $('input[name="clicks"]').val(JSON.stringify(clicks));
+                    $('input[name="platform"]').val(platform.description + ' (' + screen.width + 'x' + screen.height + ')');
 
                     //Berechnung der Task-Success-Rate nach:
                     // Osinusi, K. (o. D.). Make It Count – A Guide to Measuring the User Experience. Toptal.com. Abgerufen am 29. August 2022, von https://www.toptal.com/designers/ux/measuring-the-user-experience

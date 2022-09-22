@@ -41,7 +41,8 @@ in einer Navigationleiste auszugeben. */
       ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;');
     
     mysqli_query($mysql, 'CREATE TABLE IF NOT EXISTS `Experiment` (
-        `Experiment_ID` int(11) NOT NULL AUTO_INCREMENT,
+        `Experiment_ID` int(11) NOT NULL,
+        `Durchgang_ID` int(11) NOT NULL,
         `Menu_ID` int(11) NOT NULL,
         `User_ID` int(11) NOT NULL,
         `UserSuccessRate` float NOT NULL,
@@ -50,7 +51,9 @@ in einer Navigationleiste auszugeben. */
         `ClicksTotal` int(11) NOT NULL,
         `KLM` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL CHECK (json_valid(`KLM`)),
         `KLM-Time` float NOT NULL,
-        PRIMARY KEY (`Experiment_ID`),
+        `Clicks` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL CHECK (json_valid(`Clicks`)),
+        `SystemInfo` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL CHECK (json_valid(`SystemInfo`)),
+        PRIMARY KEY (`Experiment_ID`, `Durchgang_ID`),
         FOREIGN KEY (`Menu_ID`) REFERENCES `Menu-Generator`(`Menu_ID`),
         FOREIGN KEY (`User_ID`) REFERENCES `User`(`Session_ID`)
       ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;');
@@ -146,8 +149,12 @@ in einer Navigationleiste auszugeben. */
             $words2 = $array;
             shuffle($array);
             $words3 = $array;
+            shuffle($array);
+            $words4 = $array;
+            shuffle($array);
+            $words5 = $array;
             
-            mysqli_query($mysql, 'INSERT INTO `WordList` (`WordsToSearch`, `Functions_ID`) VALUES (\'' . json_encode($words1, JSON_UNESCAPED_UNICODE) . '\', ' . $functionsID . '), (\'' . json_encode($words2, JSON_UNESCAPED_UNICODE) . '\', ' . $functionsID . '), (\'' . json_encode($words3, JSON_UNESCAPED_UNICODE) . '\', ' . $functionsID . ')');
+            mysqli_query($mysql, 'INSERT INTO `WordList` (`WordsToSearch`, `Functions_ID`) VALUES (\'' . json_encode($words1, JSON_UNESCAPED_UNICODE) . '\', ' . $functionsID . '), (\'' . json_encode($words2, JSON_UNESCAPED_UNICODE) . '\', ' . $functionsID . '), (\'' . json_encode($words3, JSON_UNESCAPED_UNICODE) . '\', ' . $functionsID . '), (\'' . json_encode($words4, JSON_UNESCAPED_UNICODE) . '\', ' . $functionsID . '), (\'' . json_encode($words5, JSON_UNESCAPED_UNICODE) . '\', ' . $functionsID . ')');
             
 //            echo $mysql->error;exit;
         }
@@ -168,11 +175,9 @@ in einer Navigationleiste auszugeben. */
         <div class="content">
             <img class="logo" src="../images/ur-logo-bildmarke-grau.png">
             <div class="content-inner">
-                <h1 class="h1">Menu Generator</h1>
-                <p class="text" style="height:6em">Bacon ipsum dolor amet bacon shankle picanha ball tip. 
-                Tri-tip shoulder jowl filet mignon venison flank. Prosciutto pork turducken, 
-                kielbasa ground round strip steak short loin chicken fatback. 
-                Corned beef t-bone andouille burgdoggen turducken filet mignon landjaeger sausage doner shoulder.
+                <h1 class="h1">Menü Generator</h1>
+                <p class="text" style="height:6em">Hier haben Sie die Möglichkeit eine CSV-Datei hochzuladen um daraus automatisch ein horizontales Baum-Menü zu generieren. 
+                Zudem haben Sie die Möglichkeit mehrere Funktionen zu wählen. Das Ergebnis wird in einer automtisch generierten Datenbank hinterlegt.
                 </p>
                 <form class="form" method="post" enctype="multipart/form-data">
                     <div><label class="label"><span class="btn btn-upload">Upload a file</span><input type="file" class="btn-upload" name="content"><span class="description"></span></label></div>
@@ -209,7 +214,7 @@ in einer Navigationleiste auszugeben. */
                             Wörter suchen?
                         </label>
                         <label>
-                            <span class="btn btn-upload">Upload a file</span>
+                            <span class="btn btn-upload" title="Am besten eine CSV-Datei mit nur einer Spalte :)">Upload a file</span>
                            <input type="file" name="words"/><span class="description"></span>
                          </label>
                         <!-- <label class="label"><input type="file" class="btn-upload" name="words"></label> -->
@@ -220,7 +225,7 @@ in einer Navigationleiste auszugeben. */
             </div>
             <div class="footer"> 
                 <div class="descr1">Fabian Ziegler – Matrikel-Nr. 2082578</div>
-                <div class="descr2">Menü-Generator Version 1 - Lokal</div>
+                <div class="descr2">Menü-Generator Version 1 - Online</div>
             </div>
         </div>
     </body>

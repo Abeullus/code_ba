@@ -1,12 +1,14 @@
-<!-- Hier steht der Code und Content für den 1. Studiendurchlauf. In dieser hat der Teilnehmer die Aufgabe, die vorgegebenen Wörter im Menü zu wählen und in die eigene Liste hinzuzufügen. 
+<?php 
+
+/*Hier steht der Code und Content für den 1. Studiendurchlauf. In dieser hat der Teilnehmer die Aufgabe, die vorgegebenen Wörter im Menü zu wählen und in die eigene Liste hinzuzufügen. 
 Für den 1. Durchlauf hat der Nutzer die Möglichkeit sowohl die alphabetisch sortierte Übersicht als auch kategorische Suche zu verwenden. 
 
 Die zu suchenden Wörter sind bei jedem Durchlauf gleich, allerdings wird die Reihenfolge durch Zufall abgeändert. 
 
-Bei jedem Durchlauf wird ein KLM-Modell generiert und in der Datenbank gespeichert. Zudem wird die reale Zeit, die Error Rate und die Task-Success Rate berechnet. --> 
+Bei jedem Durchlauf wird ein KLM-Modell generiert und in der Datenbank gespeichert. Zudem wird die reale Zeit, die Error Rate und die Task-Success Rate berechnet. */ 
 
 
-<?php
+
     session_start();
 
     //Verbinden mit bereits erstellter Datenbank
@@ -55,8 +57,8 @@ Bei jedem Durchlauf wird ein KLM-Modell generiert und in der Datenbank gespeiche
         </script>
         <div class="content content-preview">
             <div class="study-headline">
-                <h1>Durchlauf 1</h1>
-                <p>Finden Sie das Wort: <br> <br> <span class="word"><?= json_decode($wordList[1])[0] ?></span></p>
+                <h1>Versuchsdurchlauf 1</h1>
+                <p>Finden Sie das Wort:<b> <br> <br> <span class="word"><?= json_decode($wordList[1])[0] ?></span> </b> </p>
             </div>
             <img class="logo" src="../images/ur-logo-bildmarke-grau.png">
             <div class="content-inner content-bg">
@@ -196,6 +198,8 @@ Bei jedem Durchlauf wird ein KLM-Modell generiert und in der Datenbank gespeiche
                 <input type="hidden" name="errors">
                 <input type="hidden" name="realtime">
                 <input type="hidden" name="tsr">
+                <input type="hidden" name="clicks">
+                <input type="hidden" name="platform">
             </form>
 
             <div class="footer"> 
@@ -203,6 +207,7 @@ Bei jedem Durchlauf wird ein KLM-Modell generiert und in der Datenbank gespeiche
                 <div class="page">4</div>
             </div>
         </div>
+        <script src="platform.js"></script>
         <script src="klm.js"></script>
     </body>
 </html>

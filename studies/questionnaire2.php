@@ -1,12 +1,12 @@
-<!-- Hier steht der Content für den 2. Fragebogen. Dieser wird per "iFrame" von Google Forms geladen, da dies die Auswertung des Ergebnisses am Ende der Studie erleichtert. 
+<?php
+
+/*Hier steht der Content für den 2. Fragebogen. Dieser wird per "iFrame" von Google Forms geladen, da dies die Auswertung des Ergebnisses am Ende der Studie erleichtert. 
 Um den Fragebogen den richtigen Teilnehmer zuordnen zu können, wird dieser aufgefordert seine individuelle Session-ID einzutragen. 
 
 Zur Sicherstellung, dass der Fragebogen ausgefüllt wird erscheint der Button um mit der Studie fortzufahren erst, nachdem der Teilnehmer auf den "Senden" Button in dem Formular gedrückt hat. 
-Dies hat zur Folge, dass das iFrame erneut geladen wird. Dieser Ladevorgang wird abgefangen um anschließend einen Button einzublenden. 
+Dies hat zur Folge, dass das iFrame erneut geladen wird. Dieser Ladevorgang wird abgefangen um anschließend einen Button einzublenden. */
 
--->
 
-<?php
     session_start();
     $mysql = mysqli_connect('rdbms.strato.de', 'dbu2938481', 'Bachelor2022!', 'dbs8555354');
     $ids = mysqli_query($mysql, 'SELECT `Session_ID` FROM `User`');
@@ -44,7 +44,7 @@ Dies hat zur Folge, dass das iFrame erneut geladen wird. Dieser Ladevorgang wird
             <img class="logo" src="../images/ur-logo-bildmarke-grau.png">
             <a class="btn-continue" href="./study.php">Weiter</a>
             <div class="content-inner">
-                <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSfokT4F4PbyNGexxsuVWGYrM_I8tAdtVtFlCQERnNIhSP2kuQ/viewform?embedded=true" width="640" height="1092" frameborder="0" marginheight="0" marginwidth="0">Wird geladen…</iframe>
+                <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSdbdTwR9HEK3HtlqzZqx7v46MiTvbf28Kx4Ls8iPBduopR5Dw/viewform?embedded=true" width="640" height="1092" frameborder="0" marginheight="0" marginwidth="0">Wird geladen…</iframe>
             </div>
             
             <div class="footer"> 

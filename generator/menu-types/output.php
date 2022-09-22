@@ -29,7 +29,7 @@ Inhalt zu erstellen. Der Inhalt dieser Datei wird aus der im Generator erstellte
 
 <!-- HTML Content zur generierung der Navigationsliste --> 
         <div class="content content-preview">
-            <img class="logo" src="../../images/ur-logo-bildmarke-grau.png">
+            <a href="../index.php"> <img class="logo" src="../../images/ur-logo-bildmarke-grau.png" ></a>
             <a class="btn-continue" href="#">Weiter</a>
             <div class="content-inner">
                 <header>
@@ -160,8 +160,15 @@ Inhalt zu erstellen. Der Inhalt dieser Datei wird aus der im Generator erstellte
                             <ul></ul>
                         </div>
                     </nav>
+
+               
                 </header>
             </div>
+        </div>
+
+         <div class="footer"> 
+                <div class="descr1">Fabian Ziegler – Matrikel-Nr. 2082578</div>
+                <div class="descr2">Menü-Generator Version 1 - Online</div>
         </div>
     </body>
 </html>
