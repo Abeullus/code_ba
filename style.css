@@ -306,7 +306,7 @@ nav.list > div.inactive > span {
 	}
 
 	.content-start:after {
-		content: 'Diese Studie ist für Desktopnutzung optimiert. Bitte kaufen Sie sich einen PC!';
+		content: 'Diese Studie wurde für Desktop Geräte konzipiert. Bitte verwenden Sie für die Durchführung daher einen PC oder Mac! Vielen Dank!';
 		position: fixed;
 		width: 100%;
 		height: 100%;
