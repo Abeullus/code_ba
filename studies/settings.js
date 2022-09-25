@@ -69,8 +69,11 @@ $(document).click(function(e) {
     } else if ($(e.target).hasClass('content-bg')) {
         clicks.push('Hintergrund');
     }
-    time += .2;
-    timings.bb += 1;
+    if (!$(e.target).is('label')) {
+        time += .2;
+        timings.bb += 1;
+		}
+    
 });
 
 $('nav').on('change', 'input', function() {

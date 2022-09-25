@@ -111,7 +111,11 @@
         }
         $r = '<ul>';
         foreach ($a as $key => $val) {
+					if (is_array($val)) {
+            $r .= '<li><span>' . $key . '</span>' . recurse_menu($val) . '</li>';
+					} else {
             $r .= '<li><label>' . $key . '<input type="checkbox"></label>' . recurse_menu($val) . '</li>';
+					}
         }
         $r .= '</ul>';
 
