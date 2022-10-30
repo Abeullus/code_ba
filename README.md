@@ -14,6 +14,8 @@ Passwort:       BA2022!
 ****************************
 
 
+_____________________
+
  
 Aufbau des Codes: 
 
@@ -30,3 +32,16 @@ Aufbau des Codes:
                 die sowohl in der Studie als auch beim Generator verwendet werden. 
                 Um den Link für die Studie möglichst kurz zu halten, wurde daher die index.php Datei für die Studie dorthin verlegt.
                 Des Weiteren befindet sich hier die robots.txt mit welcher die Studie vor Werbecrawlern geschützt werden sollte. 
+
+
+_____________________
+
+
+Quellen:
+
+Datenschutzerlärung erstellt und geladen von https://www.e-recht24.de/
+
+https://github.com/bestiejs/platform.js
+
+
+
