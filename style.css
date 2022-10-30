@@ -25,7 +25,6 @@ p.text {
 
 }
 
-
 .footer {
     position: absolute;
     bottom: 0;
@@ -35,8 +34,6 @@ p.text {
 }
 
 /* Button Design */
-
-
 .btn-continue {
     border: none;
     font-family: Arial, Helvetica, sans-serif;
@@ -99,7 +96,6 @@ input.btn[type="submit"] {
 }
 
 .btn-upload {
-    /*background-color: rgb(156, 0, 76);*/
     color: white;
     padding: 20px 60px;
     font-size: 13px;
@@ -130,7 +126,6 @@ input[type="file"] {
     background-image: url(./images/study_background_FHD.jpg);
     background-size: cover
 }
-
 
 .content-inner {
     width: 55%;
@@ -304,6 +299,7 @@ nav.list > div.inactive > span {
     color: rgb(156, 0, 76);
 }
 
+/* Hier wird überprüft, ob das Gerät des Probanden den Anforderungen der Studie bzgl. der minimalen Auflösung entspricht. */
 @media (max-width: 1024px) {
 	html, body {
 		overflow: hidden;

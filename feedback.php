@@ -1,7 +1,10 @@
 <?php 
 
+/* Hier wird der Inhalt für die letzte Seite der Studie implementiert. Zudem hat man hier am Ende die Möglichkeit, sich für VP-Stunden eintragen zu lassen. */
+
     session_start();
 
+    /* Verbindungsaufbau mit der Online Datenbank. Für eine lokale Verwendung müssen die hier angegebenen Daten geändert werden. */
     $mysql = mysqli_connect('rdbms.strato.de', 'dbu2938481', 'Bachelor2022!', 'dbs8555354');
     $ids = mysqli_query($mysql, 'SELECT `Session_ID` FROM `User`');
     
@@ -32,10 +35,6 @@ require('header.php');
 
 ?>
 
-
-<!--
-Hier kann optinal noch Inhalt für Versuchspersonenstunden eingefügt werden
--->
 <div class="content">
             <img class="logo" src="./images/ur-logo-bildmarke-grau.png">
             <div class="content-inner">

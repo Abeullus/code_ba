@@ -132,8 +132,3 @@ require('header.php');
         </div>
     </body>
 </html>
-
-
-
-<!-- <h1 class="h1">Datenschutz</h1>
-                <p class="text" style="height: 4em">Universiät Regensburg Datenschutzbestimmungen für die Teilnahme an einer online Umfrage</p> -->

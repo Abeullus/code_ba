@@ -1,4 +1,8 @@
-// Design und Animaion List-Menu
+// Design und Animaion der List-Menu
+
+// Die Dauer der einzelnen Animation wird auf 200ms festgelegt. Dieser Wert wird beim KLM automatisch als Wert W(t) bei jedem auslösen einer Animation addiert. 
+var animationDuration = 200;
+
 $(function() {
     $('input[name="searchWords"]').change(function() {
         $(this).parent().next('label').toggle().children('input').val('');
@@ -17,16 +21,18 @@ $(function() {
             $(this).children('input').remove();
         }
     });
+
+/*  */
     
     $('nav.list span, nav.list label').click(function() {
         let $this = $(this);
         if ($this.next('ul').length && !$this.parents('.inactive').length) {
             if ($this.next('ul').hasClass('open')) {
-                $this.next('ul').removeClass('open').stop().fadeOut(200);
+                $this.next('ul').removeClass('open').stop().fadeOut(animationDuration);
             } else {
-                $('nav.list ul.open').removeClass('open').stop().fadeOut(200);
-                $this.parents('ul').addClass('open').stop().fadeIn(200);
-                $this.next('ul').addClass('open').stop().fadeIn(200);
+                $('nav.list ul.open').removeClass('open').stop().fadeOut(animationDuration);
+                $this.parents('ul').addClass('open').stop().fadeIn(animationDuration);
+                $this.next('ul').addClass('open').stop().fadeIn(animationDuration);
             }
         }
     });
@@ -51,7 +57,9 @@ $(function() {
     });
     
 
-    // Sobald das Google-Forms nach dem Ausfüllen abgesendet wurde erscheint ein Button, um mit Studie fortfahren zu können. 
+/*  Durch nachfolgene Funktion wird überprüft, ob das eingebundene Google Formular ausgefüllt wurde. Hierbei wird das erneute Laden des 
+iFrames beim Absenden des Fragebogens abgefangen. Erst sobald dies erkannt wurde, erscheint ein Button zum fortfahren.  */
+
     let iframeLoad = 0;
     $('.content-inner > iframe').on('load', function() {
         iframeLoad++;
