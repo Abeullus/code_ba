@@ -1,21 +1,21 @@
 <?php
-    /* List.php ist zur generierung der Navigationsliste zuständig. Hier werden die im Generator wählbaren Checkboxen ausgewerten um so den richtigen
-Inhalt zu erstellen. Der Inhalt dieser Datei wird aus der im Generator erstellten Datenbank ausgelesen. */
+
+    /* Output.php ist zur Generierung der Navigationsliste zuständig. Hier werden die im Generator wählbaren Checkboxen ausgewerten um so den richtigen
+    Inhalt zu erstellen. Der Inhalt dieser Datei wird aus der im Generator erstellten Datenbank ausgelesen. */
 
     session_start();
     
+    /* Verbindungsaufbau mit der Online Datenbank. Für eine lokale Verwendung müssen die hier angegebenen Daten geändert werden. */
     $mysql = mysqli_connect('rdbms.strato.de', 'dbu2938481', 'Bachelor2022!', 'dbs8555354');
     
     if (!isset($_SESSION['study'])) {
         echo 'keine study ohoh';
-//        header('Location: /');
     }
     
     $study = mysqli_query($mysql, 'SELECT * FROM `Menu-Generator` WHERE `Menu_ID`=' . $_SESSION['study'])->fetch_row();
     
     if (!$study) {
         echo 'kein post oho oh';
-//        header('Location: /');
     }
     
     require('../../header.php');

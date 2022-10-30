@@ -1,14 +1,11 @@
 <?php
 
 /* Hier steht der Content für den 3. Fragebogen. Dieser wird per "iFrame" von Google Forms geladen, da dies die Auswertung des Ergebnisses am Ende der Studie erleichtert. 
-Um den Fragebogen den richtigen Teilnehmer zuordnen zu können, wird dieser aufgefordert seine individuelle Session-ID einzutragen. 
-
-Zur Sicherstellung, dass der Fragebogen ausgefüllt wird erscheint der Button um mit der Studie fortzufahren erst, nachdem der Teilnehmer auf den "Senden" Button in dem Formular gedrückt hat. 
-Dies hat zur Folge, dass das iFrame erneut geladen wird. Dieser Ladevorgang wird abgefangen um anschließend einen Button einzublenden. */
-
-
+Um den Fragebogen den richtigen Teilnehmer zuordnen zu können, wird dieser aufgefordert seine individuelle Session-ID einzutragen.  */
 
     session_start();
+
+    /* Verbindungsaufbau mit der Online Datenbank. Für eine lokale Verwendung müssen die hier angegebenen Daten geändert werden. */
     $mysql = mysqli_connect('rdbms.strato.de', 'dbu2938481', 'Bachelor2022!', 'dbs8555354');
     $ids = mysqli_query($mysql, 'SELECT `Session_ID` FROM `User`');
     
@@ -16,8 +13,8 @@ Dies hat zur Folge, dass das iFrame erneut geladen wird. Dieser Ladevorgang wird
         while ($id = $ids->fetch_row()) {
             $id_array[] = $id[0];
         }
-//        print_r($ids);exit;
     }
+
     if (!$id_array || !in_array(session_id(), $id_array)) {
         session_destroy();
         mysqli_query($mysql, 'INSERT INTO `User` (`Session_ID`) VALUES (NULL)');
@@ -36,8 +33,12 @@ Dies hat zur Folge, dass das iFrame erneut geladen wird. Dieser Ladevorgang wird
         header('Location: /');
     }
     
+    /* Abrufen der header.php */
     require('../header.php');
 ?>
+
+<!-- HTML Content --> 
+
         <div class="content">
             <div class="study-headline">
                 <h1>Allgemeine Fragen</h1>

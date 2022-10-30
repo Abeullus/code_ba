@@ -3,13 +3,13 @@
 /* Hier steht der Content für den NASA-TLX Fragebogen, der am Ende der Studie ausgeführt werden soll. 
 Dieser wird wie die allgemeinen Fragebögen zu Beginn der Studie mit einem "iFrame" in den HTML-Quellcode eingepflegt. 
 
-Nach erfolgreichen Ausfüllen des Fragebogens erscheint wieder ein Button, um die Studie zu beenden. Dieser führt zur Feedback-Seite, auf der 
+Nach Ausfüllen des Fragebogens erscheint wieder ein Button, um die Studie zu beenden. Dieser führt zur Feedback-Seite, auf der 
 die Teilnehmer benötigte VP-Stunden erhalten können */ 
 
 
     session_start();
 
-    //Verbindung mit vorhandener Datenbank
+    /* Verbindungsaufbau mit der Online Datenbank. Für eine lokale Verwendung müssen die hier angegebenen Daten geändert werden. */
     $mysql = mysqli_connect('rdbms.strato.de', 'dbu2938481', 'Bachelor2022!', 'dbs8555354');
     $ids = mysqli_query($mysql, 'SELECT `Session_ID` FROM `User`');
     
@@ -17,8 +17,8 @@ die Teilnehmer benötigte VP-Stunden erhalten können */
         while ($id = $ids->fetch_row()) {
             $id_array[] = $id[0];
         }
-//        print_r($ids);exit;
     }
+
     if (!$id_array || !in_array(session_id(), $id_array)) {
         session_destroy();
         mysqli_query($mysql, 'INSERT INTO `User` (`Session_ID`) VALUES (NULL)');
@@ -36,11 +36,14 @@ die Teilnehmer benötigte VP-Stunden erhalten können */
     if (!$study || empty($_POST)) {
         header('Location: /');
     }
-    
+
     $timings = json_decode($_POST['timings'], true);
+
+    /* Hier werden die Daten des 5. Versuchsdurchlaufs in die Datenbank geschrieben. Dies erfolgt zeitlich versetzt, da so nicht während eines Versuchsdurchlaufs das Fenster neu geladen werden kann um bessere Ergebnisse zu erzielen. */
     mysqli_query($mysql, 'INSERT INTO `Experiment` (`Experiment_ID`, `Durchgang_ID`, `Menu_ID`, `User_ID`, `UserSuccessRate`, `TimeOnTask`, `TaskErrorRate`, `ClicksTotal`, `KLM`, `KLM-Time`, `Clicks`, `SystemInfo`) VALUES (' . $_SESSION['exp'] . ', 5, ' . $_SESSION['study'] . ', ' . session_id() . ', ' . (float)$_POST['tsr'] . ', ' . (float)$_POST['realtime'] . ', ' . (int)$_POST['errors'] . ', ' . (int)$timings['bb'] . ', \'' . $_POST['timings'] . '\', ' . (float)$_POST['time'] . ', \'' . $_POST['clicks'] . '\', \'' . $_POST['platform'] . '\')');
     
     require('../header.php');
+
 ?>
 
 <!-- HTML Content --> 

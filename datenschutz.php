@@ -26,7 +26,7 @@ require('header.php');
 
                 <h3 class="h3">Datenerfassung auf dieser Website</h3> 
                 <h4 class="h4">Wer ist verantwortlich f&uuml;r die Datenerfassung auf dieser Website?</h4> 
-                <p class="text" style="height: auto">Die Datenverarbeitung auf dieser Website erfolgt durch den Websitebetreiber. Dessen Kontaktdaten k&ouml;nnen Sie dem Abschnitt &bdquo;Hinweis zur Verantwortlichen Stelle&ldquo; in dieser Datenschutzerkl&auml;rung entnehmen.</p> 
+                <p class="text" style="height: auto">Die Datenverarbeitung auf dieser Website erfolgt durch den Websitebetreiber in Rahmen einer Bachelorarbeit. Dessen Kontaktdaten k&ouml;nnen Sie dem Abschnitt &bdquo;Hinweis zur Verantwortlichen Stelle&ldquo; in dieser Datenschutzerkl&auml;rung entnehmen.</p> 
 
                 <h4 class="h4">Wie erfassen wir Ihre Daten?</h4> 
                 <p class="text" style="height: auto">Ihre Daten werden zum einen dadurch erhoben, dass Sie uns diese mitteilen. Hierbei kann es sich z.&nbsp;B. um Daten handeln, die Sie in ein Kontaktformular eingeben.</p> 
@@ -132,8 +132,3 @@ require('header.php');
         </div>
     </body>
 </html>
-
-
-
-<!-- <h1 class="h1">Datenschutz</h1>
-                <p class="text" style="height: 4em">Universiät Regensburg Datenschutzbestimmungen für die Teilnahme an einer online Umfrage</p> -->

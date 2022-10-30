@@ -1,3 +1,6 @@
+/* Zur Identifizierung der verwendeten Software bei der Studie wurde auf den Quellcode "Platform.js" zurückgegriffen. 
+Da eine selbstständige Implementierung dieser Funktion zu aufwendig gewesen wäre. */
+
 /*!
  * Platform.js
  * Copyright 2014-2020 Benjamin Tan
@@ -5,6 +8,8 @@
  * Available under MIT license
  * https://github.com/bestiejs/platform.js
  */
+
+
 ;(function() {
   'use strict';
 
@@ -16,7 +21,7 @@
 
   /** Used as a reference to the global object. */
   var root = (objectTypes[typeof window] && window) || this;
-
+  
   /** Backup possible global object. */
   var oldRoot = root;
 

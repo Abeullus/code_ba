@@ -1,10 +1,12 @@
 <?php
-    /* In dieser Index Datei steht der Code für den Generator, mit dem eine .csv-Datei hochgeladen werden kann um den Inhalt anschließend
+
+/* In dieser Index Datei steht der Code für den Generator, mit dem eine .csv-Datei hochgeladen werden kann um den Inhalt anschließend
 in einer Navigationleiste auszugeben. */
 
     session_start();
 
-// Verbindungsaufbau mit mySQL Datenbank, Anlegen aller benötigten Tabellen sofern diese nicht bereits existieren und Hochladen der .csv-Datei.
+    /* Verbindungsaufbau mit der Online Datenbank. Für eine lokale Verwendung müssen die hier angegebenen Daten geändert werden. Falls die Datenbank noch nicht existieren sollte, 
+    da der Generator zum ersten Mal ausgeführt wird, wird automatisch eine neue Datenbank generiert. */
     $mysql = mysqli_connect('rdbms.strato.de', 'dbu2938481', 'Bachelor2022!', 'dbs8555354');
     
     mysqli_query($mysql, 'CREATE TABLE IF NOT EXISTS `Functions` (
@@ -25,7 +27,7 @@ in einer Navigationleiste auszugeben. */
         FOREIGN KEY (`Functions_ID`) REFERENCES `Functions`(`Functions_ID`)
       ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;');
 
-    //Hier wird die Datenbank für die einzelnen Studien generiert, sofern diese noch nicht vorhanden sein sollte. 
+    /* Hier wird die Datenbank für die einzelnen Studien generiert, sofern diese noch nicht vorhanden sein sollte. */
     mysqli_query($mysql, 'CREATE TABLE IF NOT EXISTS `Menu-Generator` (
         `Menu_ID` int(11) NOT NULL AUTO_INCREMENT,
         `Functions_ID` int(11) NOT NULL,
@@ -65,10 +67,11 @@ in einer Navigationleiste auszugeben. */
         if (empty($array[count($array)-1])) {
             array_pop($array);
         }
+
         foreach ($array as &$val) {
             $val = str_getcsv($val, ';');
         }
-//        print_r($array);exit;
+
         $n = count($array[0]);
         $new_array = [];
         $ev = '';
@@ -119,18 +122,10 @@ in einer Navigationleiste auszugeben. */
             $ev .= ']';
         }
         $ev .= '];';
-        
-//        echo $ev;exit;
-        
         eval($ev);
         $json = json_encode($new_array, JSON_UNESCAPED_UNICODE);
-//        print_r($words1);
-//        print_r($words2);
-//        print_r($words3);exit;
-//        print_r($array);exit;
-//        echo 'INSERT INTO `Generated_Studies` (`Type`, `Content`, `Track_Usage`, `Calc_KLM`, `Show_Overview`, `Depth`, `study_1_words`, `study_2_words`, `study_3_words`)'
-//                . 'VALUES (\'' . $_POST['type'] . '\', \'' . $json . '\', ' . ($_POST['tracking'] ?? 0) . ', ' . ($_POST['klm'] ?? 0) . ', ' . ($_POST['overview'] ?? 0) . ', ' . $depth . ', \'' . json_encode($words1, JSON_UNESCAPED_UNICODE) . '\', \'' . json_encode($words2, JSON_UNESCAPED_UNICODE) . '\', \'' . json_encode($words3, JSON_UNESCAPED_UNICODE) . '\')';exit;
-        
+
+        /* Hier wird der Inhalt des Menüs in die Datenbank geschrieben. */
         mysqli_query($mysql, 'INSERT INTO `Functions` (`TrackUsage`, `CalcKLM`, `ShowOverview`, `ShowMyList`, `SearchWords`) VALUES (' . ($_POST['tracking'] ?? 0) . ', ' . ($_POST['klm'] ?? 0) . ', ' . ($_POST['overview'] ?? 0) . ', ' . ($_POST['mylist'] ?? 0) . ', ' . ($_POST['searchWords'] ?? 0) . ')');
         
         $functionsID = mysqli_query($mysql, 'SELECT MAX(`Functions_ID`) FROM `Functions`')->fetch_row()[0];
@@ -144,6 +139,8 @@ in einer Navigationleiste auszugeben. */
             foreach($array as &$val) {
                 $val = str_replace(array("\r", "\n"), '', $val);
             }
+
+            /* Hier werden die zu suchenden Wörter durchgewürfelt und in die Datenbank geschrieben. Somit hat jeder Versuchsdurchlauf eine unterschiedliche Reihenfolge der Wörter, die wiederum für alle Probanden identisch ist. */
             $words1 = $array;
             shuffle($array);
             $words2 = $array;
@@ -156,14 +153,11 @@ in einer Navigationleiste auszugeben. */
             
             mysqli_query($mysql, 'INSERT INTO `WordList` (`WordsToSearch`, `Functions_ID`) VALUES (\'' . json_encode($words1, JSON_UNESCAPED_UNICODE) . '\', ' . $functionsID . '), (\'' . json_encode($words2, JSON_UNESCAPED_UNICODE) . '\', ' . $functionsID . '), (\'' . json_encode($words3, JSON_UNESCAPED_UNICODE) . '\', ' . $functionsID . '), (\'' . json_encode($words4, JSON_UNESCAPED_UNICODE) . '\', ' . $functionsID . '), (\'' . json_encode($words5, JSON_UNESCAPED_UNICODE) . '\', ' . $functionsID . ')');
             
-//            echo $mysql->error;exit;
         }
         
         mysqli_query($mysql, 'INSERT INTO `Menu-Generator` (`Functions_ID`, `Content`, `Depth`) VALUES (' . $functionsID . ', \'' . $json . '\', ' . $depth . ')');
         
-//        echo $mysql->error;exit;
         $_SESSION['study'] = mysqli_query($mysql, 'SELECT MAX(`Menu_ID`) FROM `Menu-Generator`')->fetch_row()[0];
-//        echo $_SESSION['study'];exit;
         header('Location: menu-types/output.php');
     else :
         require('../header.php');
@@ -217,7 +211,6 @@ in einer Navigationleiste auszugeben. */
                             <span class="btn btn-upload" title="Am besten eine CSV-Datei mit nur einer Spalte :)">Upload a file</span>
                            <input type="file" name="words"/><span class="description"></span>
                          </label>
-                        <!-- <label class="label"><input type="file" class="btn-upload" name="words"></label> -->
                     </div>
 
                     <input type="submit" class="btn" value="Absenden">

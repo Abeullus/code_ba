@@ -1,13 +1,13 @@
 <?php
-    // Index Datei für die auszuführende Studie
+    // Index-Datei für die auszuführende Studie
 
     session_start();
 
-    /* Generierung der Datenbank für alle 3 Studiendurchläufe, um die bei der Durchführung erhaltenen Ergebnisse in dieser zu speichern.
+    /* Generierung der Datenbank für alle 5 Studiendurchläufe, um die bei der Durchführung erhaltenen Resultate in dieser zu speichern.
     Dies ist Nötig, um die Studie am Ende auswerten zu können. Jeder Nutzer erhält eine individuelle ID, um die Google-Forms Fragebögen den richtigen Ergebnis zuordnen zu können */ 
 
 
-    // Verbindung mit bereits vorhandener Datenbank
+    /* Verbindungsaufbau mit der Online Datenbank. Für eine lokale Verwendung müssen die hier angegebenen Daten geändert werden. */
     $mysql = mysqli_connect('rdbms.strato.de', 'dbu2938481', 'Bachelor2022!', 'dbs8555354');
     
     $ids = mysqli_query($mysql, 'SELECT `Session_ID` FROM `User`');
@@ -16,7 +16,6 @@
         while ($id = $ids->fetch_row()) {
             $id_array[] = $id[0];
         }
-//        print_r($ids);exit;
     }
     
     if (!$id_array || !in_array(session_id(), $id_array)) {

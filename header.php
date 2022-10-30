@@ -5,6 +5,8 @@
     <head>
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta charset="utf-8">
+        <meta name="robots" content="noindex">
+        <meta name="robots" content="noarchive">
         <title>Studie: "Vom Novizen zum Experten" – Bachelorarbeit Fabian Ziegler</title>
         <link rel="icon" type="image/vnd.microsoft.icon" href="images/favicon.ico">
         <link rel="stylesheet" href="/style.css">

@@ -1,17 +1,16 @@
 <?php 
 
-/*Hier steht der Code und Content für den 1. Studiendurchlauf. In dieser hat der Teilnehmer die Aufgabe, die vorgegebenen Wörter im Menü zu wählen und in die eigene Liste hinzuzufügen. 
+/* Hier steht der Quellcode und Content für den 1. Versuchsdurchlauf der Studie. Hierbei hat der Teilnehmer die Aufgabe, die vorgegebenen Wörter im Menü zu wählen, um sie so in den Reiter "meine Liste" hinzuzufügen. 
 Für den 1. Durchlauf hat der Nutzer die Möglichkeit sowohl die alphabetisch sortierte Übersicht als auch kategorische Suche zu verwenden. 
 
-Die zu suchenden Wörter sind bei jedem Durchlauf gleich, allerdings wird die Reihenfolge durch Zufall abgeändert. 
+Die zu suchenden Wörter sind bei jedem Durchlauf gleich, allerdings wechselt bei jedem Durchlauf die Reihenfolge. 
 
-Bei jedem Durchlauf wird ein KLM-Modell generiert und in der Datenbank gespeichert. Zudem wird die reale Zeit, die Error Rate und die Task-Success Rate berechnet. */ 
-
+Bei jedem Durchlauf wird ein KLM generiert und die Werte werden in der Datenbank gespeichert. Zudem wird die reale Zeit, die Task-Error Rate, die Anzahl der Clicks und die Task-Success Rate ermittelt. */ 
 
 
     session_start();
 
-    //Verbinden mit bereits erstellter Datenbank
+    /* Verbindungsaufbau mit der Online Datenbank. Für eine lokale Verwendung müssen die hier angegebenen Daten geändert werden. */
     $mysql = mysqli_connect('rdbms.strato.de', 'dbu2938481', 'Bachelor2022!', 'dbs8555354');
     $ids = mysqli_query($mysql, 'SELECT `Session_ID` FROM `User`');
     
@@ -19,8 +18,8 @@ Bei jedem Durchlauf wird ein KLM-Modell generiert und in der Datenbank gespeiche
         while ($id = $ids->fetch_row()) {
             $id_array[] = $id[0];
         }
-//        print_r($ids);exit;
     }
+
     if (!$id_array || !in_array(session_id(), $id_array)) {
         session_destroy();
         mysqli_query($mysql, 'INSERT INTO `User` (`Session_ID`) VALUES (NULL)');
@@ -40,7 +39,8 @@ Bei jedem Durchlauf wird ein KLM-Modell generiert und in der Datenbank gespeiche
     }
     
     require('../header.php');
-    
+
+    /* Hier werden die Informationen aus dem Menü-Genrator geladen. */
     $menu_obj = json_decode($study[2], true);
     $deepest_elements = list_deepest_elements($menu_obj);
     sort($deepest_elements);
@@ -48,9 +48,11 @@ Bei jedem Durchlauf wird ein KLM-Modell generiert und in der Datenbank gespeiche
     $functions = mysqli_query($mysql, 'SELECT * FROM `Functions` WHERE `Functions_ID`=' . $study[1])->fetch_assoc();
     
     $wordList = mysqli_query($mysql, 'SELECT `WordList_ID`, `WordsToSearch` FROM `WordList` WHERE `Functions_ID`=' . $study[1] . ' ORDER BY `WordList_ID` ASC LIMIT 1')->fetch_row();
-    
-//    print_r($wordList);exit;
+
 ?>
+
+<!-- HTML Content --> 
+
         <script>
             const words = <?= $wordList[1] ?>;
             const durchlauf = 1;
@@ -65,6 +67,8 @@ Bei jedem Durchlauf wird ein KLM-Modell generiert und in der Datenbank gespeiche
                 <header>
                     <nav class="list">
                         <div<?php if (!$functions['ShowOverview']) { echo ' class="inactive"'; } ?>>
+
+                            <!-- Da im 1. Versuchsdurchlauf neben der kategorischen Suche, noch die alphabetische Übersicht aktiviert ist. muss diese hier implementiert werden. -->
                             <span>Übersicht</span>
                             <ul>
                                 <?php if (!empty($deepest_elements) && in_array(strtoupper(substr($deepest_elements[0], 0, 1)), ['A','B','C'])) : ?>
@@ -208,7 +212,7 @@ Bei jedem Durchlauf wird ein KLM-Modell generiert und in der Datenbank gespeiche
             </div>
         </div>
         <script src="platform.js"></script>
-        <script src="klm.js"></script>
+        <script src="settings.js"></script>
     </body>
 </html>
 
@@ -219,7 +223,11 @@ Bei jedem Durchlauf wird ein KLM-Modell generiert und in der Datenbank gespeiche
         }
         $r = '<ul>';
         foreach ($a as $key => $val) {
+					if (is_array($val)) {
+            $r .= '<li><span>' . $key . '</span>' . recurse_menu($val) . '</li>';
+					} else {
             $r .= '<li><label>' . $key . '<input type="checkbox"></label>' . recurse_menu($val) . '</li>';
+					}
         }
         $r .= '</ul>';
 

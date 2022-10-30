@@ -1,10 +1,10 @@
 <?php
 
-/* Hier steht der Code und Content für den 2. Studiendurchlauf. Hier soll der Teilnehmer wieder die angegebenen Wörter suchen und zu seiner eigenen Liste hinzufügen. */
+/* Hier steht der Code und Content für den 2. Versuchsdurchlauf. Der Teilnehmer die Aufgabe, die vorgegebenen Wörter im Menü zu wählen, um sie so in den Reiter "meine Liste" hinzuzufügen. */
 
     session_start();
 
-    //Verbindung mit bereits vorhandener Datenbank
+   /* Verbindungsaufbau mit der Online Datenbank. Für eine lokale Verwendung müssen die hier angegebenen Daten geändert werden. */
     $mysql = mysqli_connect('rdbms.strato.de', 'dbu2938481', 'Bachelor2022!', 'dbs8555354');
     $ids = mysqli_query($mysql, 'SELECT `Session_ID` FROM `User`');
     
@@ -12,8 +12,8 @@
         while ($id = $ids->fetch_row()) {
             $id_array[] = $id[0];
         }
-//        print_r($ids);exit;
     }
+
     if (!$id_array || !in_array(session_id(), $id_array)) {
         session_destroy();
         mysqli_query($mysql, 'INSERT INTO `User` (`Session_ID`) VALUES (NULL)');
@@ -41,12 +41,13 @@
         $_SESSION['exp'] = 1;
     }
     
+    /* Hier werden die Daten des 1. Versuchsdurchlaufs in die Datenbank geschrieben. Dies erfolgt zeitlich versetzt, da so nicht während eines Versuchsdurchlaufs das Fenster neu geladen werden kann um bessere Ergebnisse zu erzielen. */
     mysqli_query($mysql, 'INSERT INTO `Experiment` (`Experiment_ID`, `Durchgang_ID`, `Menu_ID`, `User_ID`, `UserSuccessRate`, `TimeOnTask`, `TaskErrorRate`, `ClicksTotal`, `KLM`, `KLM-Time`, `Clicks`, `SystemInfo`) VALUES (' . $_SESSION['exp'] . ', 1, ' . $_SESSION['study'] . ', ' . session_id() . ', ' . (float)$_POST['tsr'] . ', ' . (float)$_POST['realtime'] . ', ' . (int)$_POST['errors'] . ', ' . (int)$timings['bb'] . ', \'' . $_POST['timings'] . '\', ' . (float)$_POST['time'] . ', \'' . $_POST['clicks'] . '\', \'' . $_POST['platform'] . '\')');
     
     require('../header.php');
-    
-//    echo $mysql->error;
-    
+
+
+    /* Hier werden die Informationen aus dem Menü-Genrator geladen. */
     $menu_obj = json_decode($study[2], true);
     $deepest_elements = list_deepest_elements($menu_obj);
     sort($deepest_elements);
@@ -54,7 +55,11 @@
     $functions = mysqli_query($mysql, 'SELECT * FROM `Functions` WHERE `Functions_ID`=' . $study[1])->fetch_assoc();
     
     $wordList = mysqli_query($mysql, 'SELECT `WordList_ID`, `WordsToSearch` FROM `WordList` WHERE `Functions_ID`=' . $study[1] . ' ORDER BY `WordList_ID` ASC LIMIT 1, 1')->fetch_row();
+
 ?>
+
+<!-- HTML Content --> 
+
         <script>
             const words = <?= $wordList[1] ?>;
             const durchlauf = 2;
@@ -100,7 +105,7 @@
             </div>
         </div>
         <script src="platform.js"></script>
-        <script src="klm.js"></script>
+        <script src="settings.js"></script>
     </body>
 </html>
 
@@ -111,7 +116,11 @@
         }
         $r = '<ul>';
         foreach ($a as $key => $val) {
+					if (is_array($val)) {
+            $r .= '<li><span>' . $key . '</span>' . recurse_menu($val) . '</li>';
+					} else {
             $r .= '<li><label>' . $key . '<input type="checkbox"></label>' . recurse_menu($val) . '</li>';
+					}
         }
         $r .= '</ul>';
 
